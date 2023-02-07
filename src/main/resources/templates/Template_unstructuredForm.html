@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비정형 문서 임베딩</title>
+    <script src="https://www.eformsign.com/plugins/jquery/jquery.min.js"></script>
+    <script src="https://www.eformsign.com/lib/js/efs_embedded_form.js"></script>
+</head>
+<body>
+    <iframe id="eformsign_iframe" name="eformsign_iframe" width="90%" height="700"></iframe>
+    <br>
+    <div id="buttonList" style="padding: 10px;">
+        <button id="btn_01" style="width:80px; height:30px; display: none;" onclick="actionTest('01');"></button>
+        <button id="btn_02" style="width:80px; height:30px; display: none;" onclick="actionTest('02');"></button>
+        <button id="btn_03" style="width:80px; height:30px; display: none;" onclick="actionTest('03');"></button>
+        <button id="btn_04" style="width:80px; height:30px; display: none;" onclick="actionTest('04');"></button>
+        <button id="btn_05" style="width:80px; height:30px; display: none;" onclick="actionTest('05');"></button>
+        <button id="btn_06" style="width:80px; height:30px; display: none;" onclick="actionTest('06');"></button>
+    </div>
+    <script>
+        var eformsign = new EformSignTemplate();
+ 
+        var template_option = {
+        "company" : {
+            "id" : "f9d9442fcb30497290f66ebd9629fc61",            // Company ID 입력
+            "country_code" : "kr",    // 국가 코드 입력 (ex: kr)
+            "user_key": ""        // 임베딩한 고객 측 시스템에 로그인한 사용자의 unique key. 브라우저 쿠키의 이폼사인 로그인 정보와 비교
+        },
+        "user" : {
+                "id": "dlwhsktm@gmail.com",
+                "access_token" : "",    // Access Token 입력 (OpenAPI Access Token 참조)
+                "refresh_token" : "",   // Refresh Token 입력 (OpenAPI Access Token 참조)
+            },
+            "mode" : {
+                "type" : "01",      // 01 : 생성
+                "template_id" : "", // template id 입력
+                "template_type": "unstructured_form"    // form : 템플릿, unstructured_form: 비정형
+            },
+            "layout" : {
+                "lang_code" : "ko", // 이폼사인 언어. ko, en, ja
+                "header" : true,    // 상단바 (푸른색) 표시 여부. 미표시 시 액션 버튼을 통해 전송 등 동작 가능
+                "footer" : true     // 하단바 (이폼사인 로고, 언어 설정 등) 표시 여부.
+            },
+            "prefill": {
+                "template_name": "템플릿 임베딩 테스트_7777",
+                "fields": [
+                    {
+                        "id": "텍스트 1",
+                        "value": "가나다",
+                        "enabled": true,
+                        "required": true
+                    },
+                    {
+                        "id": "텍스트 2",
+                        "value": "라마바",
+                        "enabled": true,
+                        "required": true
+                    }
+                ],
+                "step_settings": [
+                    {
+                        "step_type": "05",
+                        "step_name": "참여자",
+                        "selected": false,
+                        "recipient": {
+                            "id": "dlwhsktm@gmail.com",
+                            "name": "kkkkim",
+                            "sms": "",
+                            "use_mail": true,
+                            "use_sms": false
+                        }
+                    }
+                ],
+                "custom_sidebar_items" : {
+                    "basicFields": {
+                        "expanded": true,
+                        "items": [
+                            {
+                                "type": "STAMP",
+                                "title": "회사 도장"
+                            },
+                            {
+                                "type": "STAMP",
+                                "title": "갑 회사 도장"
+                            },
+                            {
+                                "type": "TEXTBOX",
+                                "title": "텍스트"
+                            }
+                        ]
+                    },
+                    "advanceFields": {
+                        "expanded": false,
+                        "items": [
+                            {
+                                "type": "LABEL",
+                                "title": "fieldLabelTitle"
+                            }
+                        ]
+                    },
+                    "infoFields": {
+                        "expanded": false,
+                        "items": [
+                            {
+                                "type": "DOCUMENTID",
+                                "title": "docInfoID"
+                            }
+                        ]
+                    }
+                },
+                "is_form_id_numbering" : false,
+                "disabled_form_id" : true,
+                "quick_processing" : false
+            },
+            "tempalte_file": {
+                "name": "test.pdf",
+                "mime": "@file/octet-stream",
+                "data": "JVBERi0xLjQKJaqrrK0KMTAgMCBvYmoKPDwgL1R5cGUgL1BhZ2UKL1BhcmVudCAxIDAgUgovTWVkaWFCb3ggWyAwIDAgNTk1IDg0MSBdCi9UcmltQm94IFsgMCAwIDU5NSA4NDEgXQovQmxlZWRCb3ggWyAwIDAgNTk1IDg0MSBdCi9SZXNvdXJjZXMgOSAwIFIKL0NvbnRlbnRzIDEyIDAgUgo+PgplbmRvYmoKMTIgMCBvYmoKPDwgCi9MZW5ndGggMTMgMCBSCi9GaWx0ZXIgL0ZsYXRlRGVjb2RlIAo+PgpzdHJlYW0KeJwr5DJQsDAxVMhVMLU0BbNywCwDIG0AJjO4wrUU8rgKuYyMLPSMjM0VzA1M9AxBOozMjfTMDI1hAjlwATNzQz1DEzOQCFQPQgRunImJnrG5GdgSYyM9SzMTDMXJuVz6nrmGCi75XIFgCADvGyMXCmVuZHN0cmVhbQplbmRvYmoKOSAwIG9iago8PAovUHJvY1NldCBbIC9QREYgL0ltYWdlQiAvSW1hZ2VDIF0KL1hPYmplY3QgPDwKICAvSW0xIDExIDAgUgo+Pgo+PgplbmRvYmoKMTEgMCBvYmoKPDwvVHlwZSAvWE9iamVjdAovU3VidHlwZSAvSW1hZ2UKL05hbWUgL0ltMQovTGVuZ3RoIDE0IDAgUgoKL1dpZHRoIDg4Ci9IZWlnaHQgNjYKL0JpdHNQZXJDb21wb25lbnQgOAovQ29sb3JTcGFjZSAvRGV2aWNlUkdCCi9GaWx0ZXIgL0RDVERlY29kZSAKPj4Kc3RyZWFtCv/Y/9sAQwAQCwwODAoQDg0OEhEQExgoGhgWFhgxIyUdKDozPTw5Mzg3QEhcTkBEV0U3OFBtUVdfYmdoZz5NcXlwZHhcZWdj/9sAQwEREhIYFRgvGhovY0I4QmNjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2Nj/8AAEQgAQgBYAwEiAAIRAQMRAf/EABoAAQADAQEBAAAAAAAAAAAAAAADBAUCBgf/xAAsEAACAgICAQIEBQUAAAAAAAAAAQIDBBEFEiExURMicYEGFBUWQTJVgpPR/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABkRAQEBAAMAAAAAAAAAAAAAAAABMUFR8P/aAAwDAQACEQMRAD8A+gAAAAAAAAAAAAAAAAAAAAQUZdGRbdVVYpTpl1sWn8rAnBA8uhZixHYvjyh3UNP+netk4AHKlFyaTTa9Vv0OgAAAAAAAAKHLzwa8VS5C91Vxe11tlBt+y6vb+h5nBpoxcq2/kqcrGxMuXaix3WLr/CU2n6tefJ6jPxcrInW8fKqpUPOp0Kzz7rytGVgrlMzMzsa7lWo401DcMeHzbW/53oTSpH1/eWN0e4/kXp73tdvc2MnJpxKJXZFka64+spMxY1yq/GGPCds7ZLCe5z1t/O/ZJF7JxOKtzlkZXwZ3wWkrLNqP+Let/YHPumLg5tuLy1vLZlLpweQ1GE36w14i5eyZ6qMozipQkpRa2mntMxaOShk81yGHkXUTxIQh0jLrp7Xn6l3jcbj8R2QwHBd32cI2dkvot+BMLq+AAAAAAAAVcXBrxcnKvhKblkyUpptaTS14LQAoy45S5mHI/Fe40urpr1873s7t4zj7rJWW4ONZOT25Sqi2/votgCl+j8Z/bsT/AER/4SUYGHiz74+JRTPWu1dai9fZFkAAAAAAAAAAAAAAAAAAAAAAH//ZCmVuZHN0cmVhbQplbmRvYmoKNCAwIG9iago8PAovQ3JlYXRvciAoSGFuY29tIFBERiAxLjMuMC40MDQpCi9Qcm9kdWNlciAoSGFuY29tIFBERiAxLjMuMC40MDQpCi9DcmVhdGlvbkRhdGUgKEQ6MjAyMzAxMTAxNjU3MjIrMDknMDAnKQovTW9kRGF0ZSAoRDoyMDIzMDExMDE2NTcyMiswOScwMCcpCi9QREZWZXJzaW9uICgxLjQpCj4+CmVuZG9iago1IDAgb2JqCjw8L1R5cGUvU3RydWN0VHJlZVJvb3QvSyBbXS9QYXJlbnRUcmVlIDw8L051bXMgW10+Pi9QYXJlbnRUcmVlTmV4dEtleSAwPj4KCmVuZG9iago2IDAgb2JqCjw8IC9OIDMKL0xlbmd0aCAxNiAwIFIKCi9GaWx0ZXIgL0ZsYXRlRGVjb2RlIAo+PgpzdHJlYW0KeJydlndUU9kWh8+9N71QkhCKlNBraFICSA29SJEuKjEJEErAkAAiNkRUcERRkaYIMijggKNDkbEiioUBUbHrBBlE1HFwFBuWSWStGd+8ee/Nm98f935rn73P3Wfvfda6AJD8gwXCTFgJgAyhWBTh58WIjYtnYAcBDPAAA2wA4HCzs0IW+EYCmQJ82IxsmRP4F726DiD5+yrTP4zBAP+flLlZIjEAUJiM5/L42VwZF8k4PVecJbdPyZi2NE3OMErOIlmCMlaTc/IsW3z2mWUPOfMyhDwZy3PO4mXw5Nwn4405Er6MkWAZF+cI+LkyviZjg3RJhkDGb+SxGXxONgAoktwu5nNTZGwtY5IoMoIt43kA4EjJX/DSL1jMzxPLD8XOzFouEiSniBkmXFOGjZMTi+HPz03ni8XMMA43jSPiMdiZGVkc4XIAZs/8WRR5bRmyIjvYODk4MG0tbb4o1H9d/JuS93aWXoR/7hlEH/jD9ld+mQ0AsKZltdn6h21pFQBd6wFQu/2HzWAvAIqyvnUOfXEeunxeUsTiLGcrq9zcXEsBn2spL+jv+p8Of0NffM9Svt3v5WF485M4knQxQ143bmZ6pkTEyM7icPkM5p+H+B8H/nUeFhH8JL6IL5RFRMumTCBMlrVbyBOIBZlChkD4n5r4D8P+pNm5lona+BHQllgCpSEaQH4eACgqESAJe2Qr0O99C8ZHA/nNi9GZmJ37z4L+fVe4TP7IFiR/jmNHRDK4ElHO7Jr8WgI0IABFQAPqQBvoAxPABLbAEbgAD+ADAkEoiARxYDHgghSQAUQgFxSAtaAYlIKtYCeoBnWgETSDNnAYdIFj4DQ4By6By2AE3AFSMA6egCnwCsxAEISFyBAVUod0IEPIHLKFWJAb5AMFQxFQHJQIJUNCSAIVQOugUqgcqobqoWboW+godBq6AA1Dt6BRaBL6FXoHIzAJpsFasBFsBbNgTzgIjoQXwcnwMjgfLoK3wJVwA3wQ7oRPw5fgEVgKP4GnEYAQETqiizARFsJGQpF4JAkRIauQEqQCaUDakB6kH7mKSJGnyFsUBkVFMVBMlAvKHxWF4qKWoVahNqOqUQdQnag+1FXUKGoK9RFNRmuizdHO6AB0LDoZnYsuRlegm9Ad6LPoEfQ4+hUGg6FjjDGOGH9MHCYVswKzGbMb0445hRnGjGGmsVisOtYc64oNxXKwYmwxtgp7EHsSewU7jn2DI+J0cLY4X1w8TogrxFXgWnAncFdwE7gZvBLeEO+MD8Xz8MvxZfhGfA9+CD+OnyEoE4wJroRIQiphLaGS0EY4S7hLeEEkEvWITsRwooC4hlhJPEQ8TxwlviVRSGYkNimBJCFtIe0nnSLdIr0gk8lGZA9yPFlM3kJuJp8h3ye/UaAqWCoEKPAUVivUKHQqXFF4pohXNFT0VFysmK9YoXhEcUjxqRJeyUiJrcRRWqVUo3RU6YbStDJV2UY5VDlDebNyi/IF5UcULMWI4kPhUYoo+yhnKGNUhKpPZVO51HXURupZ6jgNQzOmBdBSaaW0b2iDtCkVioqdSrRKnkqNynEVKR2hG9ED6On0Mvph+nX6O1UtVU9Vvuom1TbVK6qv1eaoeajx1UrU2tVG1N6pM9R91NPUt6l3qd/TQGmYaYRr5Grs0Tir8XQObY7LHO6ckjmH59zWhDXNNCM0V2ju0xzQnNbS1vLTytKq0jqj9VSbru2hnaq9Q/uE9qQOVcdNR6CzQ+ekzmOGCsOTkc6oZPQxpnQ1df11Jbr1uoO6M3rGelF6hXrtevf0Cfos/ST9Hfq9+lMGOgYhBgUGrQa3DfGGLMMUw12G/YavjYyNYow2GHUZPTJWMw4wzjduNb5rQjZxN1lm0mByzRRjyjJNM91tetkMNrM3SzGrMRsyh80dzAXmu82HLdAWThZCiwaLG0wS05OZw2xljlrSLYMtCy27LJ9ZGVjFW22z6rf6aG1vnW7daH3HhmITaFNo02Pzq62ZLde2xvbaXPJc37mr53bPfW5nbse322N3055qH2K/wb7X/oODo4PIoc1h0tHAMdGx1vEGi8YKY21mnXdCO3k5rXY65vTW2cFZ7HzY+RcXpkuaS4vLo3nG8/jzGueNueq5clzrXaVuDLdEt71uUnddd457g/sDD30PnkeTx4SnqWeq50HPZ17WXiKvDq/XbGf2SvYpb8Tbz7vEe9CH4hPlU+1z31fPN9m31XfKz95vhd8pf7R/kP82/xsBWgHcgOaAqUDHwJWBfUGkoAVB1UEPgs2CRcE9IXBIYMj2kLvzDecL53eFgtCA0O2h98KMw5aFfR+OCQ8Lrwl/GGETURDRv4C6YMmClgWvIr0iyyLvRJlESaJ6oxWjE6Kbo1/HeMeUx0hjrWJXxl6K04gTxHXHY+Oj45vipxf6LNy5cDzBPqE44foi40V5iy4s1licvvj4EsUlnCVHEtGJMYktie85oZwGzvTSgKW1S6e4bO4u7hOeB28Hb5Lvyi/nTyS5JpUnPUp2Td6ePJninlKR8lTAFlQLnqf6p9alvk4LTduf9ik9Jr09A5eRmHFUSBGmCfsytTPzMoezzLOKs6TLnJftXDYlChI1ZUPZi7K7xTTZz9SAxESyXjKa45ZTk/MmNzr3SJ5ynjBvYLnZ8k3LJ/J9879egVrBXdFboFuwtmB0pefK+lXQqqWrelfrry5aPb7Gb82BtYS1aWt/KLQuLC98uS5mXU+RVtGaorH1futbixWKRcU3NrhsqNuI2ijYOLhp7qaqTR9LeCUXS61LK0rfb+ZuvviVzVeVX33akrRlsMyhbM9WzFbh1uvb3LcdKFcuzy8f2x6yvXMHY0fJjpc7l+y8UGFXUbeLsEuyS1oZXNldZVC1tep9dUr1SI1XTXutZu2m2te7ebuv7PHY01anVVda926vYO/Ner/6zgajhop9mH05+x42Rjf2f836urlJo6m06cN+4X7pgYgDfc2Ozc0tmi1lrXCrpHXyYMLBy994f9Pdxmyrb6e3lx4ChySHHn+b+O31w0GHe4+wjrR9Z/hdbQe1o6QT6lzeOdWV0iXtjusePhp4tLfHpafje8vv9x/TPVZzXOV42QnCiaITn07mn5w+lXXq6enk02O9S3rvnIk9c60vvG/wbNDZ8+d8z53p9+w/ed71/LELzheOXmRd7LrkcKlzwH6g4wf7HzoGHQY7hxyHui87Xe4Znjd84or7ldNXva+euxZw7dLI/JHh61HXb95IuCG9ybv56Fb6ree3c27P3FlzF3235J7SvYr7mvcbfjT9sV3qID0+6j068GDBgztj3LEnP2X/9H686CH5YcWEzkTzI9tHxyZ9Jy8/Xvh4/EnWk5mnxT8r/1z7zOTZd794/DIwFTs1/lz0/NOvm1+ov9j/0u5l73TY9P1XGa9mXpe8UX9z4C3rbf+7mHcTM7nvse8rP5h+6PkY9PHup4xPn34D94Tz+wplbmRzdHJlYW0KZW5kb2JqCjcgMCBvYmoKWy9JQ0NCYXNlZCA2IDAgUgpdCmVuZG9iago4IDAgb2JqCjw8Ci9UeXBlIC9PdXRwdXRJbnRlbnQKL1MgL0dUU19QREZBMQovT3V0cHV0Q29uZGl0aW9uSWRlbnRpZmllciAoc1JHQiBJRUM2MTk2Ni0yLjEpCi9JbmZvIChzUkdCIElFQzYxOTY2LTIuMSkKL0Rlc3RPdXRwdXRQcm9maWxlIDYgMCBSCj4+CmVuZG9iagoxMyAwIG9iagoxMTEKZW5kb2JqCjE0IDAgb2JqCjcyNQplbmRvYmoKMTUgMCBvYmoKPDwgL1R5cGUgL01ldGFkYXRhCi9TdWJ0eXBlIC9YTUwKL0xlbmd0aCAxNyAwIFIKPj4Kc3RyZWFtCjw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+PHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNC4wLWMzMTYgNDQuMjUzOTIxLCBTdW4gT2N0IDAxIDIwMDYgMTc6MTQ6MzkiPjxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+PHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6cGRmPSJodHRwOi8vbnMuYWRvYmUuY29tL3BkZi8xLjMvIj48cGRmOlBERlZlcnNpb24+MS40PC9wZGY6UERGVmVyc2lvbj48cGRmOlByb2R1Y2VyPkhhbmNvbSBQREYgMS4zLjAuNDA0PC9wZGY6UHJvZHVjZXI+PC9yZGY6RGVzY3JpcHRpb24+PHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eGFwPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIj48eGFwOkNyZWF0b3JUb29sPkhhbmNvbSBQREYgMS4zLjAuNDA0PC94YXA6Q3JlYXRvclRvb2w+PHhhcDpDcmVhdGVEYXRlPjIwMjMtMDEtMTBUMTY6NTc6MjIrMDk6MDA8L3hhcDpDcmVhdGVEYXRlPjx4YXA6TW9kaWZ5RGF0ZT4yMDIzLTAxLTEwVDE2OjU3OjIyKzA5OjAwPC94YXA6TW9kaWZ5RGF0ZT48eGFwOk1ldGFkYXRhRGF0ZT4yMDIzLTAxLTEwVDE2OjU3OjIyKzA5OjAwPC94YXA6TWV0YWRhdGFEYXRlPjwvcmRmOkRlc2NyaXB0aW9uPjxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyI+PGRjOmZvcm1hdD5hcHBsaWNhdGlvbi9wZGY8L2RjOmZvcm1hdD48ZGM6ZGF0ZT48cmRmOlNlcT48cmRmOmxpPjIwMjMtMDEtMTBUMTY6NTc6MjIrMDk6MDA8L3JkZjpsaT48L3JkZjpTZXE+PC9kYzpkYXRlPjwvcmRmOkRlc2NyaXB0aW9uPjxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhhcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIj48eGFwTU06RG9jdW1lbnRJRD4wQTIwNTQxRi03MjhGLTREMTItQjc4NC0zQ0FBNTc3QjEyNkU8L3hhcE1NOkRvY3VtZW50SUQ+PHhhcE1NOkluc3RhbmNlSUQ+dXVpZDpGNDE1RUU3Qi03NThELTQ2QkYtODJFMy04MjUwNUQzNzlBMTc8L3hhcE1NOkluc3RhbmNlSUQ+PC9yZGY6RGVzY3JpcHRpb24+PHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6cGRmYWlkPSJodHRwOi8vd3d3LmFpaW0ub3JnL3BkZmEvbnMvaWQvIj4KPHBkZmFpZDpwYXJ0PjE8L3BkZmFpZDpwYXJ0Pgo8cGRmYWlkOmNvbmZvcm1hbmNlPkI8L3BkZmFpZDpjb25mb3JtYW5jZT4KPC9yZGY6RGVzY3JpcHRpb24+PC9yZGY6UkRGPjwveDp4bXBtZXRhPjw/eHBhY2tldCBlbmQ9InciPz4KZW5kc3RyZWFtCmVuZG9iagoxNiAwIG9iagoyNTk2CmVuZG9iagoxNyAwIG9iagoxMzg0CmVuZG9iagoxIDAgb2JqCjw8IC9UeXBlIC9QYWdlcwovQ291bnQgMQovS2lkcyBbMTAgMCBSICBdID4+CmVuZG9iagoyIDAgb2JqCjw8IC9UeXBlIC9DYXRhbG9nCi9QYWdlcyAxIDAgUgovTWFya0luZm8gPDwvTWFya2VkIGZhbHNlPj4gL0xhbmcoa28tS1IpIC9QYWdlTGF5b3V0IC9TaW5nbGVQYWdlCi9NZXRhZGF0YSAxNSAwIFIKL091dHB1dEludGVudHMgWzggMCBSCl0KPj4KZW5kb2JqCjMgMCBvYmoKPDwKL1Byb2NTZXQgWyAvUERGIF0KL0NvbG9yU3BhY2UgPDwKICAvRGVmYXVsdFJHQiA3IDAgUgo+Pgo+PgplbmRvYmoKeHJlZgowIDE4CjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwNjAzOCAwMDAwMCBuIAowMDAwMDA2MDk4IDAwMDAwIG4gCjAwMDAwMDYyNTMgMDAwMDAgbiAKMDAwMDAwMTM1MyAwMDAwMCBuIAowMDAwMDAxNTMyIDAwMDAwIG4gCjAwMDAwMDE2MjIgMDAwMDAgbiAKMDAwMDAwNDMwMCAwMDAwMCBuIAowMDAwMDA0MzM0IDAwMDAwIG4gCjAwMDAwMDAzNjMgMDAwMDAgbiAKMDAwMDAwMDAxNSAwMDAwMCBuIAowMDAwMDAwNDQ3IDAwMDAwIG4gCjAwMDAwMDAxNzQgMDAwMDAgbiAKMDAwMDAwNDQ4NyAwMDAwMCBuIAowMDAwMDA0NTA3IDAwMDAwIG4gCjAwMDAwMDQ1MjcgMDAwMDAgbiAKMDAwMDAwNTk5NiAwMDAwMCBuIAowMDAwMDA2MDE3IDAwMDAwIG4gCnRyYWlsZXIKPDwKL1NpemUgMTgKL1Jvb3QgMiAwIFIKL0luZm8gNCAwIFIKL0lEIFs8RkZGRTBBMjA1NDFGNzI4RjREMTJCNzg0M0NBQTU3N0IxMjZFPiA8RkZGRUY0MTVFRTdCNzU4RDQ2QkY4MkUzODI1MDVEMzc5QTE3Pl0KPj4Kc3RhcnR4cmVmCjYzMzAKJSVFT0YK"
+            }
+        };
+        
+        //callback option
+        var success_callback = function (response) {
+            if (response.type ==='template'){
+                console.log(response.template_id);
+                console.log(response.template_name);
+                console.log('doc_id : '+ response.document_id);
+                console.table(response.step_settings); // step_setting을 콘솔에 테이블 형태로 표시
+                if ("-1" == response.code) {
+                    alert("템플릿 생성되었습니다.\n" + "- template_id : " + response.template_id + "\n- title : " + response.template_name);
+                    location.replace('Document_unstructuredForm.html?' + response.template_id);
+                } else {
+                    alert("템플릿 생성에 실패하였습니다.\n" + "- code : " + response.code + "\n- message : " + response.message);
+                }
+            }
+            //location.replace("Document2.html");
+        };
+        
+        
+        var error_callback = function (response) {
+            alert("템플릿 생성에 실패하였습니다.\n" + "- code : " + response.code + "\n- message : " + response.message);
+            console.log(response.code);
+            console.log(response.message);
+            location.replace("https://www.eformsign.com/eform/index.html");
+        };
+        
+        var action_callback= function(response){
+            $('#buttonList').find('button').css('display','none');      // div id=buttonList의 모든 버튼을 보이지 않도록 설정
+            $(response.data).each(function(idx, action){                // response.data의 각 값에 대해
+                $('#buttonList').find('button').each(function(idx, btn){    // div id=buttonList의 모든 버튼에서
+                    if ($(btn).attr('id').replace('btn_','') === action.code){  // 만약 data[].code에 해당하는 버튼이 있으면
+                        $(btn).attr('title',action.name).text(action.name);     // 버튼 title을 data[].name으로 설정하고
+                        $(btn).css('display', '');                              // 버튼을 보이도록 설정
+                    }
+                });
+            });
+            console.table(response.data);
+        }
+
+        function actionTest(action) {
+            var action = {
+                type : '02',    // type : 01 : 문서 , 02 : 템플릿
+                code : action
+            }
+            eformsign.sendAction(action);
+        }
+        
+        eformsign.template(template_option, "eformsign_iframe", success_callback, error_callback, action_callback);
+        eformsign.open();
+    </script>
+</body>
+</html>

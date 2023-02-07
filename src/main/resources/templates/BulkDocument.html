@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문서일괄작성</title>
+
+    <script src="https://www.eformsign.com/plugins/jquery/jquery.min.js"></script>
+    <script src="https://www.eformsign.com/lib/js/efs_embeddedBulkDoc_v3.js"></script>
+</head>
+<body>
+    <iframe id="eformsign_iframe" name="eformsign_iframe" width="100%" height="700"></iframe>
+    <div id="buttonList" style="padding: 10px;">
+        <button id="btn_23" style="width:80px; height:30px; display: none;" onclick="actionTest('23');"></button>
+        <button id="btn_24" style="width:80px; height:30px; display: none;" onclick="actionTest('24');"></button>
+        <button id="btn_25" style="width:80px; height:30px; display: none;" onclick="actionTest('25');"></button>
+    </div>
+
+
+    <script>
+        var eformsign = new EformSignBulkDocument();
+
+        var document_option = {
+           "company" : {
+              "id" : "f9d9442fcb30497290f66ebd9629fc61",            // Company ID 입력
+              "country_code" : "kr",  // 국가 코드 입력 (ex: kr)
+              "user_key": ""        // 임베딩한 고객 측 시스템에 로그인한 사용자의 unique key. 브라우저 쿠키의 이폼사인 로그인 정보와 비교
+           },
+           "user" : {
+                "type" : "01" ,
+                "id": "dlwhsktm@gmail.com",
+                "access_token" : "",    // Access Token 입력 (OpenAPI Access Token 참조)
+                "refresh_token" : ""    // Refresh Token 입력 (OpenAPI Access Token 참조)
+            },
+            "mode" : {
+                "template_id" : "eb8308ba8ef84e908912cdd4c3eb9e6b", // template id 입력
+            },
+            "layout" : {
+                "lang_code" : "ko", // 이폼사인 언어. ko, en, ja
+                "header" : true,    // 상단바 (푸른색) 표시 여부. 미표시 시 액션 버튼을 통해 전송 등 동작 가능
+                "footer" : true     // 하단바 (이폼사인 로고, 언어 설정 등) 표시 여부.
+            }
+        };
+
+        var success_callback = function(response){
+            console.log(response.code);
+            if( response.code == "-1"){
+                //문서 작성 성공
+                console.table(response);
+                alert("eFormSign 문서가 작성되었습니다.\n" +
+                    "요청 id : " + response.bulk_creation_id +"\n" +
+                    "성공 수 : " + response.success_results.length + "\n" +
+                    "실패 수 : " + response.fail_results.length + "\n"
+                    );
+                } else {
+                  alert("eFormSign 문서 작성에 실패하였습니다.\n" +
+                    "- cdoe : " + response.code + "\n" +
+                    "- message : " + response.message);
+                }
+                $('#eformsign_iframe').attr('src', '');
+                $('#buttonList').find('button').css('display','none');
+            location.replace("https://www.eformsign.com/eform/index.html");
+        };
+
+        var error_callback = function(response){
+            alert("문서 작성에 실패하였습니다.\n" + "- code : " + response.code + "\n- message : " + response.message);
+            $('#eformsign_iframe').attr('src', '');
+            $('#buttonList').find('button').css('display','none');
+            location.replace("https://www.eformsign.com/eform/index.html");
+        };
+
+
+        var action_callback= function(response){
+            $('#buttonList').find('button').css('display','none');      // div id=buttonList의 모든 버튼을 보이지 않도록 설정
+            $(response.data).each(function(idx, action){                // response.data의 각 값에 대해
+                $('#buttonList').find('button').each(function(idx, btn){    // div id=buttonList의 모든 버튼에서
+                    if ($(btn).attr('id').replace('btn_','') === action.code){  // 만약 data[].code에 해당하는 버튼이 있으면
+                        $(btn).attr('title',action.name).text(action.name);     // 버튼 title을 data[].name으로 설정하고
+                        $(btn).css('display', '');                              // 버튼을 보이도록 설정
+                    }
+                });
+            });
+            console.table(response.data);
+        }
+
+        function actionTest(action) {
+            var action = {
+                type : '01',    // type : 01 : 문서 , 02 : 템플릿
+                code : action
+            }
+            eformsign.sendAction(action);
+        }
+
+        eformsign.bulkDocument(document_option, "eformsign_iframe", success_callback, error_callback, action_callback);
+        eformsign.open();
+
+    </script>
+</body>
+</html>

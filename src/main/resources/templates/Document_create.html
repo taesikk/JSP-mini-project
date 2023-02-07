@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>템플릿 문서 임베딩</title>
+    <script src="https://www.eformsign.com/plugins/jquery/jquery.min.js"></script>
+    <script src="https://www.eformsign.com/lib/js/efs_embedded_v2.js"></script>    
+</head>
+<body>
+    <iframe name="eformsign_iframe" id="eformsign_iframe" width="90%" height="700"></iframe>
+    <br>
+    <div id="buttonList" style="padding: 10px;">
+        <button id="btn_01" style="width:80px; height:30px; display: none;" onclick="actionTest('01');"></button>
+        <button id="btn_02" style="width:80px; height:30px; display: none;" onclick="actionTest('02');"></button>
+        <button id="btn_03" style="width:80px; height:30px; display: none;" onclick="actionTest('03');"></button>
+        <button id="btn_04" style="width:80px; height:30px; display: none;" onclick="actionTest('04');"></button>
+        <button id="btn_05" style="width:80px; height:30px; display: none;" onclick="actionTest('05');"></button>
+        <button id="btn_06" style="width:80px; height:30px; display: none;" onclick="actionTest('06');"></button>
+        <button id="btn_07" style="width:80px; height:30px; display: none;" onclick="actionTest('07');"></button>
+        <button id="btn_08" style="width:80px; height:30px; display: none;" onclick="actionTest('08');"></button>
+        <button id="btn_09" style="width:80px; height:30px; display: none;" onclick="actionTest('09');"></button>
+        <button id="btn_10" style="width:80px; height:30px; display: none;" onclick="actionTest('10');"></button>
+        <button id="btn_11" style="width:80px; height:30px; display: none;" onclick="actionTest('11');"></button>
+        <button id="btn_12" style="width:80px; height:30px; display: none;" onclick="actionTest('12');"></button>
+        <button id="btn_13" style="width:80px; height:30px; display: none;" onclick="actionTest('13');"></button>
+        <button id="btn_14" style="width:80px; height:30px; display: none;" onclick="actionTest('14');"></button>
+        <button id="btn_15" style="width:80px; height:30px; display: none;" onclick="actionTest('15');"></button>
+        <button id="btn_16" style="width:80px; height:30px; display: none;" onclick="actionTest('16');"></button>
+        <button id="btn_17" style="width:80px; height:30px; display: none;" onclick="actionTest('17');"></button>
+        <button id="btn_18" style="width:80px; height:30px; display: none;" onclick="actionTest('18');"></button>
+        <button id="btn_19" style="width:80px; height:30px; display: none;" onclick="actionTest('19');"></button>
+        <button id="btn_20" style="width:80px; height:30px; display: none;" onclick="actionTest('20');"></button>
+        <button id="btn_21" style="width:80px; height:30px; display: none;" onclick="actionTest('21');"></button>
+        <button id="btn_22" style="width:150px; height:30px; display: none;" onclick="actionTest('22');"></button>
+    </div>
+    <script>
+        var eformsign = new EformSignDocument();
+ 
+        var document_option = {
+            "company" : {
+                "id" : "f9d9442fcb30497290f66ebd9629fc61",            // Company ID 입력
+                "country_code" : "kr",  // 국가 코드 입력 (ex: kr)
+                "user_key": ""        // 임베딩한 고객 측 시스템에 로그인한 사용자의 unique key. 브라우저 쿠키의 이폼사인 로그인 정보와 비교
+            },
+            "user" : {
+                    "type" : "01" ,
+                    "id": "dlwhsktm@gmail.com",
+                    "access_token" : "",
+                    "refresh_token" : "",
+                    "internal_token" : "",  // 내부자 처리 시 사용자를 인증할 Internal Token 입력 (추후 Webhook에서 제공 예정)
+                    "external_token" : "",  // 외부자 처리 시 사용자를 인증할 External Token 입력 (Webhook에서 제공)
+                    "external_user_info" : {
+                    "name" : ""          // 외부자 처리 시 외부자 이름 입력
+                    }
+                },
+                "mode" : {
+                    "type" : "01", // 01 : 문서 작성 , 02 : 문서 처리 , 03 : 미리 보기
+                    "template_id" : "47c95b40670940efb0682470ade7c8f9", // template id 입력
+                    "document_id" : ""  // document_id 입력
+                },
+                "layout" : {
+                    "lang_code" : "ko", // 이폼사인 언어. ko, en, ja
+                    "header" : true,    // 상단바 (푸른색) 표시 여부. 미표시 시 액션 버튼을 통해 전송 등 동작 가능
+                    "footer" : false     // 하단바 (이폼사인 로고, 언어 설정 등) 표시 여부.
+                },
+                "prefill" : {
+                    "document_name": "Manchester City Contract", // 문서 제목 입력
+                    "recipients": [
+                        {
+                            "step_idx" : "2",       // 워크플로우 순서. 수신자가 있을 경우 2부터 시작
+                            "step_type": "06",      // 단계 종류. 05: 참여자, 06: 검토자
+                            "name" : '홀란드',        // 수신자 이름
+                            "id": "dlwhsktm@gmail.com", // 수신자 ID/이메일
+                            "sms": "01023456789",   // 수신자 핸드폰 번호
+                            "use_mail": true,       // 이메일 알림 사용 여부
+                            "use_sms": true,        // SMS 알림 사용 여부
+                            "auth": {
+                                "password": "",     // 워크플로우 설정에서 문서 열람 전 본인확인 설정 - 본인확인 정보에 체크한 경우 비밀번호 입력
+                                "password_hint": "",// 위 조건에 따라 비밀번호를 입력한 경우, 비밀번호 힌트
+                                "valid": {
+                                    "day": 7,       // 문서 전송 기한 (일)
+                                    "hour": 0       // 문서 전송 기한 (시간)
+                                }
+                            }
+                        }
+                    ],
+                    "comment": "여기에 코멘트 입력"     // 메시지
+                },
+                "return_fields" : ['고객명']           // Success Callback에서 값을 확인할 수 있도록 넘겨줄 필드명
+        };
+ 
+        //callback option
+        var success_callback = function(response){ 
+            console.log(response.code); 
+            if( response.code == "-1"){
+                //문서 작성 성공
+                console.log(response.document_id);
+                document.location.reload('https://eformsign.com/eform/index.html')
+                //window.$('#eformsign_iframe').location.href = 'https://www.eformsign.com/eform/index.html';
+
+                console.log("completeddddd");
+                //$('#eformsign_iframe').attr('src', 'https://eformsign.com/eform/index.html');
+                //document.getElementById('eformsign_iframe').contentWindow.postMessage('asdf', '*');
+                //parent.eformsign_iframe.location.href= 'https://eformsign.com/eform/index.html';
+                //document.getElementById("eformsign_iframe").src = 'https://eformsign.com/eform/index.html';
+                //document.getElementById("eformsign_iframe").reload(true);
+                //$('#eformsign_iframe').attr('src',$(this).attr('https://www.eformsign.com/eform/index.html'));
+                //location.replace("https://www.eformsign.com/eform/index.html");
+
+                // return_fields에 넘긴 데이터를 조회 가능함. fields는 폼을 작성할 때 만든 입력 컴포넌트의 id를 의미함.
+                //console.log(response.field_values["company_name"]);
+                //console.log(response.field_values["position"]);
+            }
+        };
+        
+        var error_callback = function(response){
+            console.log(response.code); 
+            //문서 작성 실패
+            alert(response.message);
+            location.replace("https://www.eformsign.com/eform/index.html");
+        };
+        
+        
+        var action_callback= function(response){
+            $('#buttonList').find('button').css('display','none');      // div id=buttonList의 모든 버튼을 보이지 않도록 설정
+            $(response.data).each(function(idx, action){                // response.data의 각 값에 대해
+                $('#buttonList').find('button').each(function(idx, btn){    // div id=buttonList의 모든 버튼에서
+                    if ($(btn).attr('id').replace('btn_','') === action.code){  // 만약 data[].code에 해당하는 버튼이 있으면
+                        $(btn).attr('title',action.name).text(action.name);     // 버튼 title을 data[].name으로 설정하고
+                        $(btn).css('display', '');                              // 버튼을 보이도록 설정
+                    }
+                });
+            });
+            console.table(response.data);
+        }
+
+        function actionTest(action) {
+            var action = {
+                type : '01',    // type : 01 : 문서 , 02 : 템플릿
+                code : action
+            }
+            eformsign.sendAction(action);
+        }
+
+        
+        eformsign.document(document_option, "eformsign_iframe", success_callback, error_callback, action_callback);
+        eformsign.open();
+    </script>    
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "group": {
+    "name": "테스트그룹",
+    "description": "클라우드팀",
+    "members": [
+      "tester4@forcs.com"
+    ]
+  }
+}
