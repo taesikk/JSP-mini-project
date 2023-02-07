@@ -46,7 +46,7 @@ public class PageController {
         System.out.println("userId : " + TokenAccess.member_id + ", apikey : " + Constants.API_KEY + ", secret : " + EformsignSignatureMake.secret);
         TokenAccess tokenAccess = new TokenAccess();
         tokenAccess.token_access();
-        System.out.println("Constants AccessToken : " + Constants.ACCESS_TOKEN);
+        System.out.println("Constants AccessToken :  " + Constants.ACCESS_TOKEN);
         System.out.println("Constants RefreshToken : " + Constants.REFRESH_TOKEN);
 
 
