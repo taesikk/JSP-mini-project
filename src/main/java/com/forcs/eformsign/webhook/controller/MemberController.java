@@ -27,6 +27,6 @@ public class MemberController {
         StringBuilder sb = memberList.member_list();
 
         model.addAttribute("result", sb.toString());
-        return "MemberListResult.html";
+        return "MemberListResult";
     }
 }

@@ -14,7 +14,7 @@
     <button onclick="location.href='tokenRefresh.html'">토큰 갱신하기</button>
     <br><br>
     <button onclick="location.href='Document.html'" style="padding:10px 10px">문서</button><br><br>
-    <button onclick="location.href='Member.jsp'" style="padding:10px 10px">멤버</button><br><br>
+    <button onclick="location.href='Member.html'" style="padding:10px 10px">멤버</button><br><br>
     <button onclick="location.href='Group.html'" style="padding:10px 10px">그룹</button><br><br>
     <br>
 </div>
