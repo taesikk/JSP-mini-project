@@ -38,9 +38,9 @@ public class TokenRefresh {
                 StringBuilder response = Constants.print(conn, "토큰 갱신, 재발급");
 
                 newRefreshToken = response.substring(response.indexOf("refresh_token") + 16, response.indexOf("access_token") - 3);
-                System.out.println("refreshtoken : " + newRefreshToken);
+                System.out.println("new refreshtoken : " + newRefreshToken);
                 newAccessToken = response.substring(response.indexOf("access_token") + 15, response.length() - 4);
-                System.out.println("accesstoken : " + newAccessToken);
+                System.out.println("new accesstoken : " + newAccessToken);
 
                 obj.put("refresh-token", newRefreshToken);
                 obj.put("access-token", newAccessToken);

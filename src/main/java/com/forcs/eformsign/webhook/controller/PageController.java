@@ -3,6 +3,7 @@ package com.forcs.eformsign.webhook.controller;
 import com.forcs.eformsign.webhook.openAPI.common.Constants;
 import com.forcs.eformsign.webhook.openAPI.method.token.EformsignSignatureMake;
 import com.forcs.eformsign.webhook.openAPI.method.token.TokenAccess;
+import com.forcs.eformsign.webhook.openAPI.method.token.TokenRefresh;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,13 +18,13 @@ import javax.servlet.http.HttpServletRequest;
 public class PageController {
 
     @RequestMapping(value = "/home")
-    public String homePage(){
+    public String homePage() {
         System.out.println("homehome");
         return "home.html";
     }
 
     @RequestMapping(value = "/send")
-    public String send(String username, int userage, Model model){
+    public String send(String username, int userage, Model model) {
         model.addAttribute("name", username);
         model.addAttribute("age", userage);
         String a = model.getAttribute("name").toString();
@@ -33,7 +34,7 @@ public class PageController {
     }
 
     @RequestMapping(value = "/token")
-    public String token(String userId, String apikey, String secret){
+    public String token(String userId, String apikey, String secret) {
         System.out.println("tokentoken");
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         String a = userId;
@@ -49,8 +50,21 @@ public class PageController {
         System.out.println("Constants AccessToken :  " + Constants.ACCESS_TOKEN);
         System.out.println("Constants RefreshToken : " + Constants.REFRESH_TOKEN);
 
+        return "home";
+    }
+
+    @RequestMapping(value = "/refresh")
+    public String tokenrefresh(String accessToken, String refreshToken) {
+        System.out.println("tokenRefresh");
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+
+        Constants.ACCESS_TOKEN = accessToken;
+        Constants.REFRESH_TOKEN = refreshToken;
+
+        System.out.println("edit AccessToken : " + Constants.ACCESS_TOKEN + ", edit RefreshToken : " + Constants.REFRESH_TOKEN);
+        TokenRefresh tokenRefresh = new TokenRefresh();
+        tokenRefresh.token_refresh();
 
         return "home";
-
     }
 }
