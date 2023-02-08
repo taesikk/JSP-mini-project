@@ -25,7 +25,7 @@ public class PageController {
         public String main(Model model) {
             System.out.println("homehome");
 
-        return "home.html";
+        return "home";
     }
 
     @RequestMapping(value = "/send")

@@ -12,7 +12,7 @@ import java.io.Reader;
 
 public class JsonData {
 
-    public static String fileAddress = ".\\APITest_Auto\\src\\main\\java\\data\\";
+    public static String fileAddress = ".\\src\\main\\java\\com\\forcs\\eformsign\\webhook\\openAPI\\data\\";
 
     public static final String DOCUMENT_CREATE_JSON = fileRead("DocumentCreate.json");
 
@@ -39,7 +39,7 @@ public class JsonData {
 
     //추가 API json
     public static final String MEMBER_ADD_JSON = fileRead("MemberAdd.json");
-    public static String MEMBER_MASS_ADD_JSON = fileRead2("MemberMassAdd.json");
+    //public static String MEMBER_MASS_ADD_JSON = fileRead2("MemberMassAdd.json");
     //public static final String MEMBER_MASS_ADD_JSON = "";
     public static final String STAMP_ADD_JSON = fileRead("StampAdd.json");
     public static final String STAMP_FIX_JSON = fileRead("StampFix.json");
