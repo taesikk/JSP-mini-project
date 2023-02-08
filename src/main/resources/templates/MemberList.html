@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>구성원 목록 조회</title>
+</head>
+<body>
+<div align="center">
+  <h3>구성원 목록 조회를 위해서는 Access Token(필수), 옵션(비필수), 구성원 이름(미선택 시 모든 구성원 조회)가 필요합니다</h3><hr>
+  <form action="memberList">
+    <table>
+      <tr>
+        <td><label for="accessToken">Access Token</label></td>
+        <td><input type="text" id="accessToken" name="accessToken"></td>
+      </tr>
+      <tr>
+        <td>전체 멤버 조회 여부</td>
+        <td>
+          <select name="memberAll">
+            <option value="true">True</option>
+            <option value="false" selected="selected">False</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>구성원 커스텀 필드 포맷 포함 여부</td>
+        <td>
+          <select name="includeField">
+            <option value="true">True</option>
+            <option value="false" selected="selected">False</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>삭제 멤버 조회 여부</td>
+        <td>
+          <select name="includeDelete">
+            <option value="true">True</option>
+            <option value="false" selected="selected">False</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="name">구성원 이름</label></td>
+        <td><input type="text" id="name" name="name"></td>
+      </tr>
+      <tr><td colspan="2" align="center"><input type="submit" value="확인"></td></tr>
+    </table>
+  </form>
+</div>
+</body>
+</html>

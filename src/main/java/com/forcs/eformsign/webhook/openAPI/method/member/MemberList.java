@@ -7,25 +7,30 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class MemberList {
+    public static String member_all = "";
+    public static String include_field = "";
+    public static String include_delete = "";
+    public static String eb_search_name = "";
 
-    public void member_list() {
+    public StringBuilder member_list() {
         String url = "";
-
+        StringBuilder sb = null;
         try {
-            checkValue();
+            checkValue(member_all,include_field,include_delete,eb_search_name);
 
             url = Constants.MEMBER_LIST_URL;
 
-            httpConnectionMemberList(url);
+           sb =  httpConnectionMemberList(url);
         } catch (Exception e) {
             e.getMessage();
         }
+        return sb;
     }
 
-    public void httpConnectionMemberList(String urlData){
+    public StringBuilder httpConnectionMemberList(String urlData){
         String totalUrl = "";
         String accessToken = "";
-
+        StringBuilder sb = null;
         try {
             totalUrl = urlData;
             accessToken = Constants.ACCESS_TOKEN;
@@ -35,16 +40,18 @@ public class MemberList {
 
             conn = Constants.headerSet(conn, accessToken, "GET");
 
-            Constants.print(conn, "구성원 목록 조회");
+            sb = Constants.print(conn, "구성원 목록 조회");
+
         }catch (Exception e){
             e.getMessage();
         }
+        return sb;
     }
-    public void checkValue() {
-        String member_all = "false";
-        String include_field = "false";
-        String include_delete = "false";
-        String eb_name_search = "";
+    public void checkValue(String member, String field, String delete, String name) {
+        String member_all = member;
+        String include_field = field;
+        String include_delete = delete;
+        String eb_name_search = name;
 
         Constants.setMemberListUrl(member_all, include_field, include_delete, eb_name_search);
     }

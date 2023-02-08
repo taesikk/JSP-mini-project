@@ -4,6 +4,8 @@ import com.forcs.eformsign.webhook.openAPI.common.Constants;
 import com.forcs.eformsign.webhook.openAPI.method.token.EformsignSignatureMake;
 import com.forcs.eformsign.webhook.openAPI.method.token.TokenAccess;
 import com.forcs.eformsign.webhook.openAPI.method.token.TokenRefresh;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +24,7 @@ public class PageController {
         public String main(Model model) {
             System.out.println("homehome");
 
-        return "home.html";
+        return "home";
     }
 
     @RequestMapping(value = "/send")
@@ -37,7 +39,7 @@ public class PageController {
 
 
     @RequestMapping(value = "/token")
-    public String token(String userId, String apikey, String secret, Model model) {
+    public ResponseEntity<Void> token(String userId, String apikey, String secret, Model model) {
         System.out.println("tokentoken");
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 
@@ -53,7 +55,8 @@ public class PageController {
 
         model.addAttribute("atoken", Constants.ACCESS_TOKEN);
         model.addAttribute("rtoken", Constants.REFRESH_TOKEN);
-        return "home";
+//        return "home.jsp?test=test";
+        return ResponseEntity.status(302).header("Location", "/home?atoken=" + Constants.ACCESS_TOKEN + "&rtoken=" + Constants.REFRESH_TOKEN).build();
     }
 
     @RequestMapping(value = "/refresh")
