@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>eformsign 시작하기</title>
 </head>
 <body>
+
 <div align="center">
     <h3>eformsign 시작하기</h3><br><br>
     <button onclick="location.href='token.html'">토큰 발급하기</button>
@@ -16,10 +17,11 @@
     <br>
 </div>
 
-<form action="send", method="GET">
-    <label for="username"><input type="text" id="username" name="username"></label><br>
-    <label for="userage"><input type="text" id="userage" name="userage"></label><br>
+
+<!--<form action="send", method="GET">
+    <label for="atoken"><input type="text" id="atoken" name="atoken" th:text="${atoken}"></label><br>
+    <label for="rtoken"><input type="text" id="rtoken" name="rtoken" th:text="${rtoken}"></label><br>
     <input type="submit" value="전송">
-</form>
+</form>-->
 </body>
 </html>

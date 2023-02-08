@@ -43,7 +43,7 @@ public class TokenAccess {
         //API KEY Base64로 인코딩
         encodeBytes = encoding(Constants.API_KEY);
 
-        System.out.println("Base64 : " + encodeBytes);
+        //System.out.println("Base64 : " + encodeBytes);
         System.out.println();
 
         String refreshToken = "";
@@ -69,9 +69,9 @@ public class TokenAccess {
             try { // 결과값 받아서 refresh-token, access-token 인덱싱
                 StringBuilder response = Constants.print(conn, "토큰 발급");
                 refreshToken = response.substring(response.indexOf("refresh_token") + 16, response.indexOf("access_token") - 3);
-                System.out.println("refreshtoken : " + refreshToken);
+                //System.out.println("refreshtoken : " + refreshToken);
                 accessToken = response.substring(response.indexOf("access_token") + 15, response.length() - 4);
-                System.out.println("accesstoken : " + accessToken);
+                //System.out.println("accesstoken : " + accessToken);
 
                 Constants.REFRESH_TOKEN = refreshToken;
                 Constants.ACCESS_TOKEN = accessToken;
