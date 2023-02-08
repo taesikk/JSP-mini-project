@@ -42,13 +42,15 @@ public class TokenRefresh {
                 newAccessToken = response.substring(response.indexOf("access_token") + 15, response.length() - 4);
                 System.out.println("new accesstoken : " + newAccessToken);
 
-                obj.put("refresh-token", newRefreshToken);
-                obj.put("access-token", newAccessToken);
+                Constants.ACCESS_TOKEN = newAccessToken;
+                Constants.REFRESH_TOKEN = newRefreshToken;
+               /* obj.put("refresh-token", newRefreshToken);
+                obj.put("access-token", newAccessToken)
 
-                FileWriter file = new FileWriter(Constants.TOKEN_FILE_URL);
+                ileWriter file = new FileWriter(Constants.TOKEN_FILE_URL);
                 file.write(obj.toJSONString());
                 file.flush();
-                file.close();
+                file.close();*/
             }catch (Exception e){
                 e.getMessage();
             }
