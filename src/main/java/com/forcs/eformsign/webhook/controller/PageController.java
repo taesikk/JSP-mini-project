@@ -1,6 +1,7 @@
 package com.forcs.eformsign.webhook.controller;
 
 import com.forcs.eformsign.webhook.openAPI.common.Constants;
+import com.forcs.eformsign.webhook.openAPI.method.group.GroupList;
 import com.forcs.eformsign.webhook.openAPI.method.token.EformsignSignatureMake;
 import com.forcs.eformsign.webhook.openAPI.method.token.TokenAccess;
 import com.forcs.eformsign.webhook.openAPI.method.token.TokenRefresh;
@@ -24,7 +25,7 @@ public class PageController {
         public String main(Model model) {
             System.out.println("homehome");
 
-        return "home";
+        return "home.html";
     }
 
     @RequestMapping(value = "/send")

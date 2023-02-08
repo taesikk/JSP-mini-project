@@ -7,12 +7,16 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class GroupList {
+    public static String check1="";
+    public static String check2="";
+
 
     public void group_list(){
         String url = "";
 
+
         try {
-            checkValue();
+            checkValue(check1,check2);
             url = Constants.GROUP_LIST_URL;
 
             httpConnectionGroupList(url);
@@ -40,10 +44,7 @@ public class GroupList {
         }
     }
 
-    public void checkValue(){
-        String include_member = "false";
-        String include_field = "false";
-
+    public void checkValue(String include_member, String include_field){
         Constants.setGroupListUrl(include_member, include_field);
     }
 }
