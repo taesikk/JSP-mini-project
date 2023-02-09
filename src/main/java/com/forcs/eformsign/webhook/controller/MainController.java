@@ -17,6 +17,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.math.BigInteger;
+import java.security.KeyFactory;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.Signature;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -43,6 +50,52 @@ public class MainController {
     @RequestMapping(method = RequestMethod.POST, value = "")
     public ResponseEntity<Object> post(@RequestBody(required = false) String params) { // String값으로 body를 받음
         System.out.println("MainController.post");
+
+        try {
+//            String privateKeyHex = "3041020100301306072a8648ce3d020106082a8648ce3d030107042730250201010420bd35442dcba89032946efe52dc0fc756817fc2cdf6c1fb90df3f88c19fc33aad";
+////		String publicKeyHex = "3059301306072a8648ce3d020106082a8648ce3d030107034200045ac8a472cee38601e99b2a2d731c958e738eee1ee6aca28f6f5637f231e9a8444f3cb80d9ce6c5bace1d0e71167673ff81743e0ea811ebd999f2f314f1d0a676";
+            String publicKeyHex = "3059301306072a8648ce3d020106082a8648ce3d03010703420004c04deed1347f2c7573ef2a1727cbc58bb4ee4ad6c3dcf5c89fd29559e982396e5c929e5434637fe98d483ad2ffcdd38f44bf2a8bdada8254b654e693510670a4";  // 비즈앤플랫폼
+            String eformsign_signature = "3059301306072a8648ce3d020106082a8648ce3d030107034200043eb1d97531829336cdae92017dc26f587264b89432d8759f2fb53536f6bdac356f083cf37e44e318ef1a86d5598d95bce523e2c1d7ae5a43acbd83567c0676d1";  // 비즈앤플랫폼
+
+            //private key
+//            KeyFactory privateKeyFact = KeyFactory.getInstance("EC");
+//            PKCS8EncodedKeySpec psks8KeySpec = new PKCS8EncodedKeySpec(new BigInteger(privateKeyHex,16).toByteArray());
+//            PrivateKey privateKey = privateKeyFact.generatePrivate(psks8KeySpec);
+//
+//            //signature
+//            String testData = "{\"test\":\"signature test\"}";
+//            Signature ecdsa = Signature.getInstance("SHA256withECDSA");
+//            ecdsa.initSign(privateKey);
+//            ecdsa.update(testData.getBytes("UTF-8"));
+//            String eformsign_signature = new BigInteger(ecdsa.sign()).toString(16);
+//
+//            System.out.println("data : "+testData);
+//            System.out.println("eformsign_signature : "+eformsign_signature);
+
+//		eformsign_signature = "30440220735abb18480080edac2e3b398e3b3c1df7b8b23280cd4ccd79b41536140993650220745cf13a450b87b63321cadb35189cbd305b52855794f298bb2e9034ad67cc57";
+
+            //public key
+            KeyFactory publicKeyFact = KeyFactory.getInstance("EC");
+            X509EncodedKeySpec x509KeySpec = new X509EncodedKeySpec(new BigInteger(publicKeyHex,16).toByteArray());
+            PublicKey publicKey = publicKeyFact.generatePublic(x509KeySpec);
+
+            System.out.println("publicKey : "+publicKey);
+
+            //verify
+            Signature signature = Signature.getInstance("SHA256withECDSA");
+            signature.initVerify(publicKey);
+            signature.update(params.getBytes("UTF-8"));
+            if(signature.verify(new BigInteger(eformsign_signature,16).toByteArray())){
+                //검증 성공
+                System.out.println("검증 성공");
+            }else{
+                //검증 실패
+                System.out.println("검증 실패");
+            }
+
+        }catch (Exception e){
+            e.getMessage();
+        }
 
         //요청받은 body를 파일에 쓰는 메소드
         fileWrite(params, "POST");

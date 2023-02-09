@@ -1,6 +1,7 @@
 package com.forcs.eformsign.webhook.controller;
 
 import com.forcs.eformsign.webhook.openAPI.common.Constants;
+import com.forcs.eformsign.webhook.openAPI.method.member.MemberFix;
 import com.forcs.eformsign.webhook.openAPI.method.member.MemberList;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,5 +29,17 @@ public class MemberController {
 
         model.addAttribute("result", sb.toString());
         return "MemberListResult";
+    }
+    @RequestMapping(value = "/memberFix")
+    public String memberFix(String accessToken, String memberId, Model model){
+
+        Constants.ACCESS_TOKEN = accessToken;
+        MemberFix.member_id = memberId;
+
+        MemberList memberList = new MemberList();
+        StringBuilder sb = memberList.member_list();
+
+        model.addAttribute("result", sb.toString());
+        return "MemberFixResult";
     }
 }
