@@ -2,7 +2,6 @@ package com.forcs.eformsign.webhook.openAPI.method.member;
 
 import com.forcs.eformsign.webhook.openAPI.common.Constants;
 import com.forcs.eformsign.webhook.openAPI.common.JsonData;
-import com.forcs.eformsign.webhook.openAPI.method.document.DocumentRequest;
 
 import java.io.OutputStream;
 import java.lang.reflect.Field;
@@ -11,11 +10,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
-import java.util.Scanner;
 import java.util.Set;
 
 public class MemberFix {
-    public static String doc_id="";
+    public static String member_id ="";
     public void member_fix(){
         String url = "";
 
@@ -35,8 +33,8 @@ public class MemberFix {
 
         try {
             jsondata = JsonData.MEMBER_FIX_JSON;
-            doc_id = jsondata.substring(jsondata.indexOf("id")+6, jsondata.indexOf("name")-7);
-            totalUrl = urlData+doc_id;
+            member_id = jsondata.substring(jsondata.indexOf("id")+6, jsondata.indexOf("name")-7);
+            totalUrl = urlData+ member_id;
             accessToken = Constants.ACCESS_TOKEN;
 
 
