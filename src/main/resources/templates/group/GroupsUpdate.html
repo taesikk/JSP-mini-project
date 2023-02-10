@@ -5,6 +5,35 @@
     <title>그룹 목록 조회</title>
 </head>
 <body>
+<div align="center">
+    <p>회사의 그룹 정보를 수정합니다.</p>
+    <hr>
+    <form action="groupsUpdate", method="get">
+        <table align="center">
+            <tr>
+                <td><label for="accessToken">access_token</label></td>
+                <td><input type="text" id="accessToken" name="accessToken"><br></td>
+            </tr>
+            <tr>
+                <td><label for="group_id">group_id</label></td>
+                <td><input type="text" id="group_id" name="group_id"><br></td>
+            </tr>
+            <tr>
+                <td><label for="name">name</label></td>
+                <td><input type="text" id="name" name="name"><br></td>
+            </tr>
+            <tr>
+                <td><label for="description">description</label></td>
+                <td><input type="text" id="description" name="description"><br></td>
+            </tr>
+            <tr>
+                <td><label for="member">member</label></td>
+                <td><input type="text" id="member" name="member"><br></td>
+            </tr>
+            <tr><td colspan="2" align="center"><input type="submit" value="확인"></td></tr>
 
+        </table>
+    </form>
+</div>
 </body>
 </html>

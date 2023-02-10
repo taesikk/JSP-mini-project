@@ -9,8 +9,9 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class GroupDelete {
+    public StringBuilder mainSB;
+    public static String group_id;
 
-    public static String group_id = "";
     public void group_delete() {
         String url = "";
 
@@ -27,12 +28,12 @@ public class GroupDelete {
     public void httpConnectionGroupDelete(String urlData) {
         String totalUrl = "";
         String accessToken = "";
-        String jsondata = "";
+        String bodyData ="{\"group_ids\":[\""+group_id+"\"]}";
+        StringBuilder sb;
 
         try {
             totalUrl = urlData;
             accessToken = Constants.ACCESS_TOKEN;
-            jsondata = JsonData.GROUP_DELETE_JSON;
 
             URL url = new URL(totalUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -40,11 +41,12 @@ public class GroupDelete {
             conn = Constants.headerSet(conn, accessToken, "DELETE");
 
             try (OutputStream os = conn.getOutputStream()) {
-                byte[] input = jsondata.getBytes("utf-8");
+                byte[] input = bodyData.getBytes("utf-8");
                 os.write(input, 0, input.length);
             }
 
-            Constants.print(conn, "그룹 삭제");
+            sb = Constants.print(conn, "그룹 삭제");
+            mainSB=sb;
         } catch (Exception e) {
             e.getMessage();
         }

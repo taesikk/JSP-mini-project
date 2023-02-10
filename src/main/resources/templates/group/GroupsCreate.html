@@ -2,32 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>그룹 목록 조회</title>
+    <title>그룹 생성</title>
 </head>
 <body>
 <div align="center">
     <p>회사에 새로운 그룹을 추가합니다.</p>
     <hr>
-    <form action="groups_create", method="get">
+    <form action="groupsCreate", method="get">
         <table align="center">
             <tr>
-                <td><label for="access_token">access_token</label></td>
-                <td><input type="text" id="access_token" name="access_token"><br></td>
-            </tr>
-<!--            <tr>
-                <td>include_member</td>
-                <td><select name="include_member">
-                    <option value="true">true</option>
-                    <option value="false" selected>false</option>
-                </select></td>
+                <td><label for="accessToken">access_token</label></td>
+                <td><input type="text" id="accessToken" name="accessToken"><br></td>
             </tr>
             <tr>
-                <td>include_field</td>
-                <td><select name="include_field">
-                    <option value="true">true</option>
-                    <option value="false" selected>false</option>
-                </select></td>
-            </tr>-->
+                <td><label for="name">name</label></td>
+                <td><input type="text" id="name" name="name"><br></td>
+            </tr>
+            <tr>
+                <td><label for="description">description</label></td>
+                <td><input type="text" id="description" name="description"><br></td>
+            </tr>
+            <tr>
+                <td><label for="members">members</label></td>
+                <td><input type="text" id="members" name="members"><br></td>
+            </tr>
             <tr><td colspan="2" align="center"><input type="submit" value="확인"></td></tr>
 
         </table>

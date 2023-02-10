@@ -73,6 +73,7 @@ public class PageController {
         System.out.println("Constants AccessToken :  " + Constants.ACCESS_TOKEN);
         System.out.println("Constants RefreshToken : " + Constants.REFRESH_TOKEN);
 
-        return "resfresh.jsp";
+//        return "resfresh.jsp";
+        return "home";
     }
 }

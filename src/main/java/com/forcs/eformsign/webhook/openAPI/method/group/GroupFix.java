@@ -18,14 +18,16 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class GroupFix {
-    public String group_id= "";
+    public StringBuilder mainSB;
+    public static String group_id= "";
+    public static String name= "";
+    public static String description= "";
+    public static String member= "";
+
     public void group_fix(){
         String url = "";
 
         try {
-            Object ob = new JSONParser().parse(new FileReader(".\\APITest_Auto\\src\\main\\java\\data\\DocumentId.json"));
-            JSONObject jsonObject = (JSONObject) ob;
-            group_id = jsonObject.get("group_fix").toString();
             url = Constants.GROUP_URL + "/" + group_id;
 
             httpConnectionGroupFix(url);
@@ -37,12 +39,12 @@ public class GroupFix {
     public void httpConnectionGroupFix(String urlData){
         String totalUrl = "";
         String accessToken = "";
-        String jsondata = "";
+        String bodyData = "{\"group\":{\"name\":\""+name+"\",\"description\":\""+description+"\",\"members\":[\""+member+"\"]}}";
+        StringBuilder sb;
 
         try {
             totalUrl = urlData;
             accessToken = Constants.ACCESS_TOKEN;
-            jsondata = JsonData.GROUP_FIX_JSON;
 
             allowMethods("PATCH");
 
@@ -52,11 +54,12 @@ public class GroupFix {
             conn = Constants.headerSet(conn, accessToken, "PATCH");
 
             try (OutputStream os = conn.getOutputStream()) {
-                byte[] input = jsondata.getBytes("utf-8");
+                byte[] input = bodyData.getBytes("utf-8");
                 os.write(input, 0, input.length);
             }
 
-            Constants.print(conn, "그룹 수정");
+            sb = Constants.print(conn, "그룹 수정");
+            mainSB=sb;
         }catch (Exception e){
             e.getMessage();
         }

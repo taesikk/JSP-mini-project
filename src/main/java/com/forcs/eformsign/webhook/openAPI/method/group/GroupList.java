@@ -10,25 +10,24 @@ public class GroupList {
     public static String check1="";
     public static String check2="";
 
+    public StringBuilder mainSB;
+
 
     public void group_list(){
         String url = "";
-
-
         try {
             checkValue(check1,check2);
             url = Constants.GROUP_LIST_URL;
-
             httpConnectionGroupList(url);
         }catch (Exception e){
             e.getMessage();
         }
     }
 
-    public void httpConnectionGroupList(String urlData){
+    public StringBuilder httpConnectionGroupList(String urlData){
         String totalUrl = "";
         String accessToken = "";
-
+        StringBuilder sb=null;
         try {
             totalUrl = urlData;
             accessToken = Constants.ACCESS_TOKEN;
@@ -38,10 +37,13 @@ public class GroupList {
 
             conn = Constants.headerSet(conn, accessToken, "GET");
 
-            Constants.print(conn, "그룹 목록 조회");
+            sb = Constants.print(conn, "그룹 목록 조회");
+            mainSB=sb;
+//            System.out.println("mainSB : "+ mainSB.toString());
         }catch (Exception e){
             e.getMessage();
         }
+        return sb;
     }
 
     public void checkValue(String include_member, String include_field){
