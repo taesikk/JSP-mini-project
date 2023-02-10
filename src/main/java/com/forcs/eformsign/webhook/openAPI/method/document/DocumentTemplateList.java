@@ -7,21 +7,24 @@ import java.net.URL;
 
 public class DocumentTemplateList {
 
-    public void document_template_list(){
+    public StringBuilder document_template_list(){
         String url = "";
+        StringBuilder sb = null;
 
         try {
             url = Constants.DOCUMENT_TEMPLATE_LIST;
 
-            httpConnectionDocumentTemplateList(url);
+            sb = httpConnectionDocumentTemplateList(url);
         }catch (Exception e){
             e.getMessage();
         }
+        return sb;
     }
 
-    public void httpConnectionDocumentTemplateList(String urlData){
+    public StringBuilder httpConnectionDocumentTemplateList(String urlData){
         String totalUrl = "";
         String accessToken = "";
+        StringBuilder sb = null;
 
         try {
             totalUrl = urlData;
@@ -32,9 +35,10 @@ public class DocumentTemplateList {
 
             conn = Constants.headerSet(conn, accessToken, "GET");
 
-            Constants.print(conn, "작성 가능한 템플릿 목록 조회");
+            sb = Constants.print(conn, "작성 가능한 템플릿 목록 조회");
         }catch (Exception e){
             e.getMessage();
         }
+        return sb;
     }
 }
