@@ -37,20 +37,15 @@ public class MemberController {
         JSONArray jsonArray = new JSONArray();
         String[] id = new String[100];
         String[] username = new String[100];
-        HashMap<String, String> map = new HashMap<>();
+
         try {
             jsonObject = (JSONObject) parser.parse(sb.toString());
             jsonArray = (JSONArray) jsonObject.get("members");
-            jsonObject = (JSONObject) jsonArray.get(0);
             for (int i=0;i<jsonArray.size();i++){
                 jsonObject = (JSONObject) jsonArray.get(i);
                 id[i] = jsonObject.get("id").toString();
                 username[i] = jsonObject.get("name").toString();
-                map.put(jsonObject.get("id").toString(), jsonObject.get("name").toString());
             }
-            System.out.println("array id : " + id);
-
-            //jsonObject.get("id")
         }catch (Exception e){
             e.getMessage();
         }

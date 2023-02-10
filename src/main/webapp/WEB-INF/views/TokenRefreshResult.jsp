@@ -16,8 +16,10 @@
             <tr><td>Refresh Token</td><td><textarea col="500" rows="10">${refreshToken}</textarea></td></tr>
     </table>
     <script>
-        localStorage.setItem("accessToken",${accessToken});
-        localStorage.setItem("refreshToken",${refreshToken});
+        var acc = "${accessToken}";
+        var ref = "${refreshToken}";
+        window.localStorage.setItem("accessToken",acc);
+        window.localStorage.setItem("refreshToken",ref);
     </script>
 
 </div>

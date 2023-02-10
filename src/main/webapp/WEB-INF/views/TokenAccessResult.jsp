@@ -6,6 +6,14 @@
 <meta charset="UTF-8" name="viewport" content="width=device-width">
 <title>토큰 발급 결과</title>
 </head>
+<script language="javaScript">
+        console.log("test");
+        var acc = "${accessToken}";
+        console.log(acc);
+        var ref = "${refreshToken}";
+        window.localStorage.setItem("accessToken",acc);
+        window.localStorage.setItem("refreshToken",ref);
+    </script>
 <body>
 
 <div align="center" width="80%">
@@ -15,10 +23,7 @@
             <tr><td>Access Token</td><td><textarea col="500" rows="10">${accessToken}</textarea></td></tr>
             <tr><td>Refresh Token</td><td><textarea col="500" rows="10">${refreshToken}</textarea></td></tr>
     </table>
-    <script>
-            localStorage.setItem("accessToken",${accessToken});
-            localStorage.setItem("refreshToken",${refreshToken});
-    </script>
+
 
 </div>
 
