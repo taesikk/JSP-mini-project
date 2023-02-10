@@ -5,6 +5,9 @@ import com.forcs.eformsign.webhook.openAPI.method.group.GroupAdd;
 import com.forcs.eformsign.webhook.openAPI.method.group.GroupDelete;
 import com.forcs.eformsign.webhook.openAPI.method.group.GroupFix;
 import com.forcs.eformsign.webhook.openAPI.method.group.GroupList;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.boot.Banner;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -30,8 +33,34 @@ public class GroupsController {
         groupList.group_list();
 
         String resultSB = groupList.mainSB.toString();
+
+        JSONObject jsonObject;
+        JSONArray array;
+        String[]id = new String[100];
+        String[]name = new String[100];
+        String[]description = new String[100];
+        try {
+            JSONParser parser = new JSONParser();
+            jsonObject= (JSONObject)parser.parse(resultSB);
+            array= (JSONArray) jsonObject.get("groups");
+
+            for (int i=0; i<array.size(); i++){
+                jsonObject = (JSONObject) array.get(i);
+                id[i]=jsonObject.get("id").toString();
+                name[i]=jsonObject.get("name").toString();
+                description[i]=jsonObject.get("description").toString();
+//                System.out.println("id : "+id[i]+" name : "+name[i]+" description : "+description[i]);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        model.addAttribute("id",id);
+        model.addAttribute("name",name);
+        model.addAttribute("description",description);
         model.addAttribute("result",resultSB);
+
         return "group/GroupsListSearchResult";
+
     }
 
     @RequestMapping(value = "/groupsCreate")
@@ -47,6 +76,21 @@ public class GroupsController {
         groupAdd.group_add();
 
         String resultSB=groupAdd.mainSB.toString();
+
+        JSONObject object;
+        String idJsp = new String();
+        String nameJsp = new String();
+        try {
+            JSONParser parser = new JSONParser();
+            object= (JSONObject) parser.parse(resultSB);
+            object= (JSONObject) object.get("group");
+            idJsp = object.get("id").toString();
+            nameJsp = object.get("name").toString();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("idJsp",idJsp);
+        model.addAttribute("nameJsp",nameJsp);
         model.addAttribute("result",resultSB);
 
         return "group/GroupsCreateResult";
@@ -63,6 +107,24 @@ public class GroupsController {
         groupDelete.group_delete();
 
         String resultSB=groupDelete.mainSB.toString();
+
+        JSONObject object;
+        String codeJsp = null;
+        String messageJsp= null;
+        Integer statusJsp= null;
+        try {
+            JSONParser parser = new JSONParser();
+            object= (JSONObject) parser.parse(resultSB);
+            codeJsp= object.get("code").toString();
+            messageJsp= object.get("message").toString();
+            statusJsp= Integer.parseInt(object.get("status").toString());
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("codeJsp",codeJsp);
+        model.addAttribute("messageJsp",messageJsp);
+        model.addAttribute("statusJsp",statusJsp);
         model.addAttribute("result",resultSB);
 
         return "group/GroupsDeleteResult";
@@ -83,6 +145,20 @@ public class GroupsController {
         groupFix.group_fix();
 
         String resultSB=groupFix.mainSB.toString();
+        JSONObject object;
+        String idJsp = new String();
+        String nameJsp = new String();
+        try {
+            JSONParser parser = new JSONParser();
+            object= (JSONObject) parser.parse(resultSB);
+            object= (JSONObject) object.get("group");
+            idJsp = object.get("id").toString();
+            nameJsp = object.get("name").toString();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("idJsp",idJsp);
+        model.addAttribute("nameJsp",nameJsp);
         model.addAttribute("result",resultSB);
 
         return "group/GroupsUpdateResult";
