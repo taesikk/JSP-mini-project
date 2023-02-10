@@ -40,7 +40,7 @@ public class PageController {
 
 
     @RequestMapping(value = "/token")
-    public ResponseEntity<Void> token(String userId, String apikey, String secret, Model model) {
+    public String token(String userId, String apikey, String secret, Model model) {
         System.out.println("tokentoken");
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 
@@ -54,14 +54,15 @@ public class PageController {
         System.out.println("Constants AccessToken :  " + Constants.ACCESS_TOKEN);
         System.out.println("Constants RefreshToken : " + Constants.REFRESH_TOKEN);
 
-        model.addAttribute("atoken", Constants.ACCESS_TOKEN);
-        model.addAttribute("rtoken", Constants.REFRESH_TOKEN);
-//        return "home.jsp?test=test";
-        return ResponseEntity.status(302).header("Location", "/home?atoken=" + Constants.ACCESS_TOKEN + "&rtoken=" + Constants.REFRESH_TOKEN).build();
+        model.addAttribute("accessToken", Constants.ACCESS_TOKEN);
+        model.addAttribute("refreshToken", Constants.REFRESH_TOKEN);
+
+        //return ResponseEntity.status(302).header("Location", "/home?atoken=" + Constants.ACCESS_TOKEN + "&rtoken=" + Constants.REFRESH_TOKEN).build();
+        return "TokenAccessResult";
     }
 
     @RequestMapping(value = "/refresh")
-    public String tokenrefresh(String accessToken, String refreshToken) {
+    public String tokenrefresh(String accessToken, String refreshToken, Model model) {
         System.out.println("tokenRefresh");
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 
@@ -73,7 +74,15 @@ public class PageController {
         System.out.println("Constants AccessToken :  " + Constants.ACCESS_TOKEN);
         System.out.println("Constants RefreshToken : " + Constants.REFRESH_TOKEN);
 
-//        return "resfresh.jsp";
-        return "home";
+        model.addAttribute("accessToken", Constants.ACCESS_TOKEN);
+        model.addAttribute("refreshToken", Constants.REFRESH_TOKEN);
+
+        return "TokenRefreshResult";
+    }
+
+    @RequestMapping(value = "/TokenAccessResult")
+    public String tokenAccessResult(){
+        System.out.println("tokenaccessResultt");
+        return "TokenAccessResult";
     }
 }

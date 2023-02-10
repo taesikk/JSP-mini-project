@@ -6,6 +6,10 @@
     <meta charset="UTF-8">
     <title>eformsign 시작하기</title>
 </head>
+<frameset cols="30%,*">
+    <frame src="Frame1.html"></frame>
+    <frame src="Frame2.html" name="right"></frame>
+</frameset>
 <body>
 
 <div align="center">

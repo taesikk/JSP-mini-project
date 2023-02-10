@@ -2,30 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>토큰 발급하기</title>
+    <title>토큰</title>
 </head>
 <body>
 <div align="center">
-    <p>토큰 발급을 위해 계정, API key, 비밀키가 필요합니다.</p>
-    <hr>
-    <form action="token", method="get">
-        <table align="center">
-            <tr>
-                <td>계정</td>
-                <td><label for="userId"><input type="text" id="userId" name="userId"></label><br></td>
-            </tr>
-            <tr>
-                <td>API key</td>
-                <td><label for="apikey"><input type="text" id="apikey" name="apikey"></label><br></td>
-            </tr>
-            <tr>
-                <td>비밀키</td>
-                <td><label for="secret"><input type="text" id="secret" name="secret"></label><br></td>
-            </tr>
-            <tr><td colspan="2" align="center"><input type="submit" value="확인"></td></tr>
-
-        </table>
-    </form>
+    <h3>토큰과 관련된 메뉴입니다</h3><hr>
+    <button onclick="location.href='TokenAccess.html'" style="padding:40px 40px">토큰 발급</button><br><br>
+    <button onclick="location.href='TokenRefresh.html'" style="padding:50px 50px">토큰 갱신</button><br><br>
 </div>
 </body>
 </html>

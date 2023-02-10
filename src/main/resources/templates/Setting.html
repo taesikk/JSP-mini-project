@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Setting</title>
+</head>
+<body>
+
+
+<div align="center" width="80%">
+  <h2>토큰발급 결과입니다</h2>
+  <hr>
+  <table align="center" width="50%">
+    <tr><td>Access Token</td><td><textarea col="500" rows="10"><p id="access"></p></textarea></td></tr>
+    <tr><td>Refresh Token</td><td><textarea col="500" rows="10"><p id="refresh"></p></textarea></td></tr>
+  </table>
+  <script>
+    var acc = document.getElementById("access");
+    var ref = document.getElementById("refresh");
+    acc.value = localStorage.getItem("accessToken");
+    ref.value = localStorage.getItem("refreshToken");
+   </script>
+</div>
+</body>
+</html>
