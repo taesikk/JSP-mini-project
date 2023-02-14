@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="utf-8" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -8,9 +9,19 @@
 <body>
 <div align="center">
 <table border="1">
-  	<tr><td>GroupId</td><td>GroupName </td><td>Description</td></tr>
-  	<tr><td> ${id[0]} </td><td> ${name[0]} </td><td> ${description[0]} </td></tr>
-  	<tr><td> ${id[1]} </td><td> ${name[1]} </td><td> ${description[1]} </td></tr>
+    <th>ID</th>
+    <th>이름</th>
+    <th>부서</th>
+    <c:forEach var="item" items="${id}" varStatus="vs">
+    <c:if test="${!empty item}">
+  	<tr>
+  	<td>${item}</td>
+  	<td>${name[vs.index]}</td>
+  	<td>${description[vs.index]}</td>
+  	</tr>
+  	</c:if>
+    </c:forEach>
+
 </table>
     <p><textarea col="50" rows="10"> ${result}</textarea></p>
 
