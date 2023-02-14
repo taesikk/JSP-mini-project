@@ -6,20 +6,52 @@
 </head>
 <body>
 <div align="center">
-  <h3>구성원 수정을 하기 위한 id가 필요합니다</h3><hr><br>
-  <form action="memberFix">
-    <table>
-      <tr>
-        <td><label for="accessToken">Access Token</label></td>
-        <td><input type="text" name="memberId" id="accessToken"></td>
-      </tr>
-      <tr>
-        <td><label for="member_id">구성원 id</label></td>
-        <td><input type="text" name="memberId" id="member_id"></td>
-      </tr>
-      <tr><td colspan="2" align="center"><input type="submit" value="확인"></td></tr>
-    </table>
-  </form>
+    <h3>구성원 수정을 하기 위한 id가 필요합니다</h3>
+    <hr>
+    <br>
+    <form action="memberFix">
+        <table>
+            <tr>
+                <td><label for="accessToken">Access Token</label></td>
+                <td><input type="text" name="accessToken" id="accessToken"></td>
+            </tr>
+            <tr>
+                <td><label for="memberId">member_id</label></td>
+                <td><input type="text" name="memberId" id="memberId"></td>
+            </tr>
+            <tr>
+                <td><label for="jsonName">name</label></td>
+                <td><input type="text" name="jsonName" id="jsonName"></td>
+            </tr>
+            <tr>
+                <td><label for="jsonEnabled">enabled</label></td>
+                <td><input type="text" name="jsonEnabled" id="jsonEnabled" placeholder="default : true"></td>
+            </tr>
+            <tr>
+                <td><label for="jsonNumber">number</label></td>
+                <td><input type="text" name="jsonNumber" id="jsonNumber"></td>
+            </tr>
+            <tr>
+                <td><label for="jsonTel">tel</label></td>
+                <td><input type="text" name="jsonTel" id="jsonTel"></td>
+            </tr>
+            <tr>
+                <td><label for="jsonDepartment">department</label></td>
+                <td><input type="text" name="jsonDepartment" id="jsonDepartment"></td>
+            </tr>
+            <tr>
+                <td><label for="jsonPosition">position</label></td>
+                <td><input type="text" name="jsonPosition" id="jsonPosition"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="확인"></td>
+            </tr>
+        </table>
+    </form>
 </div>
+<script language="JavaScript">
+    document.getElementById("accessToken").value = window.localStorage.getItem("accessToken");
+
+</script>
 </body>
 </html>

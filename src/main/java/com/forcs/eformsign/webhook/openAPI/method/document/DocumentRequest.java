@@ -3,9 +3,6 @@ package com.forcs.eformsign.webhook.openAPI.method.document;
 import com.forcs.eformsign.webhook.openAPI.common.Constants;
 import com.forcs.eformsign.webhook.openAPI.common.JsonData;
 import com.forcs.eformsign.webhook.openAPI.method.member.MemberDelete;
-import com.forcs.eformsign.webhook.openAPI.method.member.MemberFix;
-import com.forcs.eformsign.webhook.openAPI.method.token.EformsignSignatureMake;
-import com.forcs.eformsign.webhook.openAPI.method.token.TokenAccess;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -14,7 +11,6 @@ import java.io.FileReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Scanner;
 
 public class DocumentRequest {
     public static String doc_id = "";
@@ -70,7 +66,7 @@ public class DocumentRequest {
             DocumentRequest.doc_id = jsonObject.get("document_request").toString();
             DocumentMass.doc_id = jsonObject.get("document_mass").toString();
             DocumentInfo.info_id = jsonObject.get("document_info").toString();
-            MemberDelete.doc_id = jsonObject.get("member_delete").toString();
+            MemberDelete.memberId = jsonObject.get("member_delete").toString();
 
         } catch (Exception e) {
             e.getMessage();

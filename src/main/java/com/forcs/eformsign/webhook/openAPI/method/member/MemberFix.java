@@ -14,26 +14,35 @@ import java.util.Set;
 
 public class MemberFix {
     public static String member_id ="";
-    public void member_fix(){
+    public static String jsonName ="";
+    public static Boolean jsonEnabled = Boolean.valueOf("true");
+    public static String jsonNumber ="";
+    public static String jsonTel ="";
+    public static String jsonDepartment ="";
+    public static String jsonPosition ="";
+
+    public StringBuilder member_fix(){
         String url = "";
+        StringBuilder sb = null;
 
         try {
             url = Constants.MEMBER_FIX_DELETE_URL;
 
-            httpConnectionMemberFix(url);
+            sb=httpConnectionMemberFix(url);
         }catch (Exception e){
             e.getMessage();
         }
+        return sb;
     }
 
-    public void httpConnectionMemberFix(String urlData){
+    public StringBuilder httpConnectionMemberFix(String urlData){
         String totalUrl = "";
         String accessToken = "";
         String jsondata = "";
+        StringBuilder sb = null;
 
         try {
-            jsondata = JsonData.MEMBER_FIX_JSON;
-            member_id = jsondata.substring(jsondata.indexOf("id")+6, jsondata.indexOf("name")-7);
+            jsondata = "{\"account\":{\"id\":\""+member_id+"\",\"name\":\""+jsonName+"\",\"enabled\":"+jsonEnabled+",\"contact\":{\"number\":\""+jsonNumber+"\",\"tel\":\""+jsonTel+"\"},\"department\":\""+jsonDepartment+"\",\"position\":\""+jsonPosition+"\",\"role\":[\"company_manager\",\"template_manager\"]}}";
             totalUrl = urlData+ member_id;
             accessToken = Constants.ACCESS_TOKEN;
 
@@ -52,10 +61,11 @@ public class MemberFix {
                 os.write(input, 0, input.length);
             }
 
-            Constants.print(conn, "구성원 수정");
+            sb = Constants.print(conn, "구성원 수정");
         }catch (Exception e){
             e.getMessage();
         }
+        return sb;
     }
 
     private static void allowMethods(String methods) {

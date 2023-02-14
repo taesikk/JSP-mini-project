@@ -8,6 +8,7 @@
 <body>
 <div align="center">
 <table border="1">
+  	<tr><td> Code </td><td> Message </td><td> Status </td></tr>
   	<tr><td> ${codeJsp} </td><td> ${messageJsp} </td><td> ${statusJsp} </td></tr>
 </table>
     <p><textarea col="50" rows="10"> ${result}</textarea></p>
