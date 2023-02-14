@@ -11,12 +11,10 @@
 <div align="center">
     <h2>멤버 목록 조회 결과입니다</h2>
     <h3>(최대 10명의 정보만 출력됩니다.)</h3><hr>
-    <table align="center">
-            <tr>
-                <td>${username[0]}</td>
-                <td>${result[0]}</td>
-            </tr>
-            <tr><td>${username[1]}</td><td align="right">${result[1]}</td></tr>
+    <table align="center" border="1">
+            <tr><td>Name</td><td>Id</td><td>Department</td><td>Position</td></tr>
+            <tr><td>${username[0]}</td><td><center>${result[0]}</td><td>${userDepartment[0]}</td><td>${userPosition[0]}</td></tr>
+            <tr><td>${username[1]}</td><td><center>${result[1]}</td><td>${userDepartment[1]}</td><td>${userPosition[1]}</td></tr>
             <tr><td>${username[2]}</td><td align="right">${result[2]}</td></tr>
             <tr><td>${username[3]}</td><td align="right">${result[3]}</td></tr>
             <tr><td>${username[4]}</td><td align="right">${result[4]}</td></tr>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>구성원 삭제</title>
+</head>
+<body>
+<div align="center">
+  <h3>멤버를 회사에서 삭제합니다.</h3><hr>
+  <form action="memberDelete">
+    <table>
+      <tr>
+        <td><label for="accessToken">Access Token</label></td>
+        <td><input type="text" id="accessToken" name="accessToken"></td>
+      </tr>
+      <tr>
+        <td><label for="memberId">구성원 이름</label></td>
+        <td><input type="text" id="memberId" name="memberId"></td>
+      </tr>
+      <tr><td colspan="2" align="center"><input type="submit" value="확인"></td></tr>
+    </table>
+  </form>
+</div>
+<script language="JavaScript">
+    document.getElementById("accessToken").value = window.localStorage.getItem("accessToken");
+   </script>
+</body>
+</html>

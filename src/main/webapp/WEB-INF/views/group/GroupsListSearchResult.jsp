@@ -8,6 +8,7 @@
 <body>
 <div align="center">
 <table border="1">
+  	<tr><td>GroupId</td><td>GroupName </td><td>Description</td></tr>
   	<tr><td> ${id[0]} </td><td> ${name[0]} </td><td> ${description[0]} </td></tr>
   	<tr><td> ${id[1]} </td><td> ${name[1]} </td><td> ${description[1]} </td></tr>
 </table>

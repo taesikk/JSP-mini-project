@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>멤버 수정 결과</title>
+<title>멤버 삭제 결과</title>
 </head>
 <body>
 <div align="center">
 <table border="1">
-  	<tr><td>CompanyId</td><td>Name</td><td>Id</td></tr>
-  	<tr><td> ${companyId}</td><td>${name}</td><td>${id}</td></tr>
+  	<tr><td>Code</td><td>Message</td><td>Status</td></tr>
+  	<tr><td>${code}</td><td>${message}</td><td>${status}</td></tr>
 </table>
     <p><textarea col="50" rows="10"> ${result}</textarea></p>
 </div>
