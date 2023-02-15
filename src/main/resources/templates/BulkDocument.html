@@ -20,9 +20,12 @@
     <script>
         var eformsign = new EformSignBulkDocument();
 
+        var temp = location.href.split("?");
+        var temp_id = temp[1];
+
         var document_option = {
            "company" : {
-              "id" : "f9d9442fcb30497290f66ebd9629fc61",            // Company ID 입력
+              "id" : "4aad8fd516384656954e82f93de67a7b",            // Company ID 입력
               "country_code" : "kr",  // 국가 코드 입력 (ex: kr)
               "user_key": ""        // 임베딩한 고객 측 시스템에 로그인한 사용자의 unique key. 브라우저 쿠키의 이폼사인 로그인 정보와 비교
            },
@@ -33,7 +36,7 @@
                 "refresh_token" : ""    // Refresh Token 입력 (OpenAPI Access Token 참조)
             },
             "mode" : {
-                "template_id" : "eb8308ba8ef84e908912cdd4c3eb9e6b", // template id 입력
+                "template_id" : temp_id, // template id 입력
             },
             "layout" : {
                 "lang_code" : "ko", // 이폼사인 언어. ko, en, ja

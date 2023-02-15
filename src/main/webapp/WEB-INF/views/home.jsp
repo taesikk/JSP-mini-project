@@ -14,7 +14,7 @@
     window.localStorage.setItem("accessToken",acc);
     window.localStorage.setItem("refreshToken",ref);
 </script>
-<frameset cols="30%,*">
+<frameset cols="20%,*">
     <frame src="Frame1.html"></frame>
     <frame src="Frame2.html" name="right"></frame>
 </frameset>

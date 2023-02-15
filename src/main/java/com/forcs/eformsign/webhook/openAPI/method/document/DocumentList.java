@@ -13,22 +13,25 @@ import java.util.stream.Collectors;
 
 public class DocumentList {
 
-    public void document_list() {
+    public StringBuilder document_list() {
         String url = "";
+        StringBuilder sb=null;
 
         try {
             url = Constants.DOCUMENT_LIST_URL;
 
-            httpConnectionDocumentList(url);
+            sb=httpConnectionDocumentList(url);
         } catch (NullPointerException e) {
             e.getMessage();
         }
+        return sb;
     }
 
-    public void httpConnectionDocumentList(String urlData) {
+    public StringBuilder httpConnectionDocumentList(String urlData) {
         String accessToken = "";
         String jsondata = "";
         String totalUrl = urlData;
+        StringBuilder sb=null;
         try {
             accessToken = Constants.ACCESS_TOKEN;
 
@@ -45,9 +48,10 @@ public class DocumentList {
                 os.write(input, 0, input.length);
             }
 
-            Constants.print(conn, "문서 목록 조회");
+            sb=Constants.print(conn, "문서 목록 조회");
         } catch (Exception e) {
             e.getMessage();
         }
+        return sb;
     }
 }

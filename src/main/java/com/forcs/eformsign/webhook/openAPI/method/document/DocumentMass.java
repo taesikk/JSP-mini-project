@@ -11,23 +11,26 @@ import java.util.Scanner;
 public class DocumentMass {
 
     public static String doc_id = "";
-    public void document_mass(){
+    public StringBuilder document_mass(){
         String url = "";
+        StringBuilder sb=null;
 
         try {
             DocumentRequest.fileRead(Constants.DOC_ID_FILE_URL);
             url = Constants.DOCUMENT_MASS_URL + doc_id;
 
-            httpConnectionDocumentMass(url);
+            sb=httpConnectionDocumentMass(url);
         }catch (Exception e){
             e.getMessage();
         }
+        return sb;
     }
 
-    public void httpConnectionDocumentMass(String urlData){
+    public StringBuilder httpConnectionDocumentMass(String urlData){
         String totalUrl= "";
         String accessToken = "";
         String jsondata = "";
+        StringBuilder sb=null;
 
         try {
             totalUrl = urlData;
@@ -44,9 +47,10 @@ public class DocumentMass {
                 os.write(input, 0, input.length);
             }
 
-            Constants.print(conn, "문서 일괄 작성");
+            sb=Constants.print(conn, "문서 일괄 작성");
         }catch (Exception e){
             e.getMessage();
         }
+        return sb;
     }
 }

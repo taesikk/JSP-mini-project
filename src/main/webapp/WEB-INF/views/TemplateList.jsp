@@ -25,6 +25,7 @@
         <th>템플릿 이름</th>
         <th>작성자</th>
         <th>작성자 ID</th>
+        <th>일괄작성</th>
 
         <c:forEach var="item" items="${form_id}" varStatus="status">
         <c:if test="${fn:length(item) > 0}">
@@ -34,6 +35,8 @@
             <td>${name[status.index]}</td>
             <td>${createName[status.index]}</td>
             <td>${createId[status.index]}</td>
+            <td><input type="button" value="작성하기" onclick="location.href='BulkDocument.html?' + '${item}'"</td>
+
         <tr>
         </c:if>
         </c:forEach>
