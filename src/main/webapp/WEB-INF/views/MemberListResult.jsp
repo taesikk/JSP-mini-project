@@ -11,7 +11,7 @@
 
 <div align="center">
     <h2>멤버 목록 조회 결과입니다</h2>
-    <h3>(최대 10명의 정보만 출력됩니다.)</h3><hr>
+    <hr>
     <table align="center" border="1">
             <th>이름</th>
             <th>ID</th>

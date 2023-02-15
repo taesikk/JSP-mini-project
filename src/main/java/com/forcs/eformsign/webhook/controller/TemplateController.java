@@ -7,6 +7,10 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping(value = "")
@@ -16,6 +20,7 @@ public class TemplateController {
     public String templateList(Model model){
         DocumentTemplateList documentTemplateList = new DocumentTemplateList();
         StringBuilder sb = documentTemplateList.document_template_list();
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 
         JSONParser parser = new JSONParser();
         JSONObject jsonObject = null;
@@ -24,9 +29,15 @@ public class TemplateController {
         String[] name = new String[100];
         String[] createId = new String[100];
         String[] createName = new String[100];
+        String error = "";
 
         try {
+
             jsonObject = (JSONObject) parser.parse(sb.toString());
+            if (jsonObject.get("ErrorMessage") != null){
+                System.out.println("errorstart");
+                error = jsonObject.get("ErrorMessage").toString();
+            }
             jsonArray = (JSONArray) jsonObject.get("templates");
             for (int i=0;i<jsonArray.size();i++){
                 jsonObject = (JSONObject) jsonArray.get(i);
@@ -39,6 +50,7 @@ public class TemplateController {
             e.getMessage();
         }
 
+        model.addAttribute("error", error);
         model.addAttribute("form_id", formId);
         model.addAttribute("name", name);
         model.addAttribute("createId", createId);

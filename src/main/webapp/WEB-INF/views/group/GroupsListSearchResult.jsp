@@ -8,6 +8,7 @@
 </head>
 <body>
 <div align="center">
+<h2>그룹 목록 조회 결과입니다.</h2><hr>
 <table border="1">
     <th>ID</th>
     <th>이름</th>

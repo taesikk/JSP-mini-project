@@ -7,6 +7,7 @@
 </head>
 <body>
 <div align="center">
+<h2>그룹 생성 결과입니다.</h2><hr>
 <table border="1">
   	<tr><td>GroupId</td><td>GroupName</td></tr>
   	<tr><td> ${idJsp} </td><td> ${nameJsp} </td></tr>

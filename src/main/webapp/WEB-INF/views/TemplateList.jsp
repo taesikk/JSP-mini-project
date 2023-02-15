@@ -7,7 +7,14 @@
 <meta charset="UTF-8" name="viewport" content="width=device-width">
 <title>토큰 발급 결과</title>
 </head>
-
+<script language="javaScript">
+    var code = "${error}";
+    console.log("${error}");
+    if(code.length !== 0){
+        alert(code);
+        location.href="Template.html";
+    }
+</script>
 <body>
 
 <div align="center" width="80%">

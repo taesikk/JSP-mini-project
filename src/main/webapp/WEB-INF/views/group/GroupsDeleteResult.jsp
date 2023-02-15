@@ -7,6 +7,7 @@
 </head>
 <body>
 <div align="center">
+<h2>그룹 삭제 결과입니다.</h2><hr>
 <table border="1">
   	<tr><td> Code </td><td> Message </td><td> Status </td></tr>
   	<tr><td> ${codeJsp} </td><td> ${messageJsp} </td><td> ${statusJsp} </td></tr>

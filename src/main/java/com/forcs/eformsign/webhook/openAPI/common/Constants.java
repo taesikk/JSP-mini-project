@@ -127,7 +127,8 @@ public class Constants {
             String result = new BufferedReader(new InputStreamReader(conn.getErrorStream()))
                     .lines().collect(Collectors.joining("\n"));
             System.out.println("error : " + result);
-            logWrite(result+"\n", status, String.valueOf(conn.getResponseCode()));
+            response = new StringBuilder(result);
+            //logWrite(result+"\n", status, String.valueOf(conn.getResponseCode()));
         }
 
         return response;
