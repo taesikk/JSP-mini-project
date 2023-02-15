@@ -13,7 +13,7 @@ public class Constants {
     public static String ACCESS_TOKEN = "";
 
     //json 파일 url
-    public static final String TOKEN_FILE_URL = ".\\APITest_Auto\\src\\main\\java\\data\\token.json";
+    public static final String TOKEN_FILE_URL = ".\\src\\main\\java\\com\\forcs\\eformsign\\webhook\\openAPI\\data\\token.json";
     public static final String TOKEN_ACCESS_FILE_URL = ".\\APITest_Auto\\src\\main\\java\\data\\tokenInfo.json";
     public static final String DOC_ID_FILE_URL = ".\\APITest_Auto\\src\\main\\java\\data\\DocumentId.json";
     //토큰발급 URL

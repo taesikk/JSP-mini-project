@@ -5,20 +5,27 @@
     <title>Setting</title>
 </head>
 <body>
+<div align="center">
+    <p>토큰 발급을 위해 계정, API key, 비밀키가 필요합니다.</p>
+    <hr>
+    <form action="login", method="get">
+        <table align="center">
+            <tr>
+                <td>계정</td>
+                <td><label for="userId"><input type="text" id="userId" name="userId"></label><br></td>
+            </tr>
+            <tr>
+                <td>API key</td>
+                <td><label for="apikey"><input type="text" id="apikey" name="apikey"></label><br></td>
+            </tr>
+            <tr>
+                <td>비밀키</td>
+                <td><label for="secret"><input type="text" id="secret" name="secret"></label><br></td>
+            </tr>
+            <tr><td colspan="2" align="center"><input type="submit" value="저장"></td></tr>
 
-
-<div align="center" width="80%">
-  <h2>토큰 정보입니다</h2>
-  <hr>
-  <table align="center" width="50%">
-    <tr><td>Access Token</td><td><textarea col="500" rows="10" id="access"></textarea></td></tr>
-    <tr><td>Refresh Token</td><td><textarea col="500" rows="10" id="refresh"></textarea></td></tr>
-  </table>
-  <script language="JavaScript">
-
-    document.getElementById("access").value = window.localStorage.getItem("accessToken");
-    document.getElementById("refresh").value = window.localStorage.getItem("refreshToken");
-   </script>
+        </table>
+    </form>
 </div>
 </body>
 </html>

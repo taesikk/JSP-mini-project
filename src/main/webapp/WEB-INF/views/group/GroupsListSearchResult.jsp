@@ -12,6 +12,7 @@
     <th>ID</th>
     <th>이름</th>
     <th>부서</th>
+
     <c:forEach var="item" items="${id}" varStatus="vs">
     <c:if test="${!empty item}">
   	<tr>

@@ -23,7 +23,7 @@ public class TokenRefresh {
         String accessToken = "";
         String newRefreshToken = "";
         String newAccessToken = "";
-        JSONObject obj = new JSONObject();
+        JSONObject jsonObject = new JSONObject();
 
         try {
             URL url = new URL(urlData);
@@ -44,13 +44,14 @@ public class TokenRefresh {
 
                 Constants.ACCESS_TOKEN = newAccessToken;
                 Constants.REFRESH_TOKEN = newRefreshToken;
-               /* obj.put("refresh-token", newRefreshToken);
-                obj.put("access-token", newAccessToken)
 
-                ileWriter file = new FileWriter(Constants.TOKEN_FILE_URL);
-                file.write(obj.toJSONString());
+                jsonObject.put("refresh-token", newRefreshToken);
+                jsonObject.put("access-token", newAccessToken);
+
+                FileWriter file = new FileWriter(Constants.TOKEN_FILE_URL);
+                file.write(jsonObject.toJSONString());
                 file.flush();
-                file.close();*/
+                file.close();
             }catch (Exception e){
                 e.getMessage();
             }

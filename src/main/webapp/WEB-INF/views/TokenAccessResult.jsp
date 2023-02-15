@@ -7,6 +7,7 @@
 <title>토큰 발급 결과</title>
 </head>
 <script language="javaScript">
+alert("정보가 성공적으로 저장되었습니다.\n accessToken : ${accessToken} \n refreshToken : ${refreshToken}");
         console.log("test");
         var acc = "${accessToken}";
         console.log(acc);
@@ -15,17 +16,6 @@
         window.localStorage.setItem("refreshToken",ref);
     </script>
 <body>
-
-<div align="center" width="80%">
-    <h2>토큰발급 결과입니다</h2>
-    <hr>
-    <table align="center" width="50%">
-            <tr><td>Access Token</td><td><textarea col="500" rows="10">${accessToken}</textarea></td></tr>
-            <tr><td>Refresh Token</td><td><textarea col="500" rows="10">${refreshToken}</textarea></td></tr>
-    </table>
-
-
-</div>
 
 </body>
 </html>

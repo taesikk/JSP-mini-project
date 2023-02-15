@@ -38,7 +38,7 @@ public class TokenAccess {
         String encodeBytes = "";
         String eformsign_signature = signature;
         String jsondata = json;
-        JSONObject obj = new JSONObject();
+        JSONObject jsonObject = new JSONObject();
 
         //API KEY Base64로 인코딩
         encodeBytes = encoding(Constants.API_KEY);
@@ -77,14 +77,15 @@ public class TokenAccess {
                 Constants.ACCESS_TOKEN = accessToken;
 
                 //token.json 파일에 쓰기
-                /*obj.put("refresh-token", refreshToken);
-                obj.put("access-token", accessToken);*/
+                jsonObject.put("refresh-token", refreshToken);
+                jsonObject.put("access-token", accessToken);
 
 
-                /*FileWriter file = new FileWriter(Constants.TOKEN_FILE_URL);
-                file.write(obj.toJSONString());
+                FileWriter file = new FileWriter(Constants.TOKEN_FILE_URL);
+                file.write(jsonObject.toJSONString());
                 file.flush();
-                file.close();*/
+                file.close();
+
             }catch (Exception e) {
                 e.printStackTrace();
             }

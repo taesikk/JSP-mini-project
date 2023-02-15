@@ -23,11 +23,14 @@
     <br>
 </div>
 
+<script language="javaScript">
+        console.log("test");
+        var acc = "${accessToken}";
+        console.log(acc);
+        var ref = "${refreshToken}";
+        window.localStorage.setItem("accessToken",acc);
+        window.localStorage.setItem("refreshToken",ref);
+    </script>
 
-<!--<form action="send", method="GET">
-    <label for="atoken"><input type="text" id="atoken" name="atoken" th:text="${atoken}"></label><br>
-    <label for="rtoken"><input type="text" id="rtoken" name="rtoken" th:text="${rtoken}"></label><br>
-    <input type="submit" value="전송">
-</form>-->
 </body>
 </html>
