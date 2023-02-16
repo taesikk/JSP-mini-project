@@ -5,13 +5,26 @@
     <title>문서 목록 조회</title>
     <style>
         input{ position : relative; top : 100px;}
+
     </style>
 </head>
 <body>
 <div align="center">
-  <form action="documentList">
-    <input type="submit" value="확인하기" style="width:150px;height:100px">
-  </form>
+    <table align="center">
+        <tr>
+            <td>
+                <form action="documentList">
+                    <input type="submit" value="진행 문서 확인하기" style="width:150px;height:100px">
+                </form>
+            </td>
+            <br>
+        </tr>
+        <tr>
+            <form action="documentCompleteList">
+                <input type="submit" value="완료 문서 확인하기" style="width:150px;height:100px">
+            </form>
+        </tr>
+    </table>
 </div>
 </body>
 </html>
