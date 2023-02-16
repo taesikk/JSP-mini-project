@@ -1,5 +1,6 @@
 package com.forcs.eformsign.webhook.controller;
 
+import com.forcs.eformsign.webhook.openAPI.method.document.DocumentDelete;
 import com.forcs.eformsign.webhook.openAPI.method.document.DocumentList;
 import com.forcs.eformsign.webhook.openAPI.method.document.DocumentRequest;
 import org.json.simple.JSONArray;
@@ -9,6 +10,9 @@ import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.io.FileReader;
+import java.io.FileWriter;
 
 @Controller
 @RequestMapping(value = "")
@@ -128,6 +132,35 @@ public class DocumentController {
 
         model.addAttribute("code", code);
         model.addAttribute("result", result);
+        return "DocumentRequestResult";
+    }
+
+    @RequestMapping(value = "/documentDelete")
+    public String documentDelete(String documentId, Model model){
+        JSONParser parser = new JSONParser();
+        JSONObject jsonObject = null;
+        String code = "";
+        String result = "";
+        try {
+            DocumentDelete documentDelete = new DocumentDelete();
+            documentDelete.data = documentId;
+            StringBuilder sb = documentDelete.document_delete();
+
+            jsonObject = (JSONObject) parser.parse(sb.toString());
+            if (jsonObject.get("code").toString().equals("-1")){
+                code = jsonObject.get("status").toString();
+                result = jsonObject.get("message").toString();
+            } else {
+                code = jsonObject.get("code").toString();
+                result = jsonObject.get("ErrorMessage").toString();
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        model.addAttribute("code", code);
+        model.addAttribute("result", result);
+
         return "DocumentRequestResult";
     }
 }

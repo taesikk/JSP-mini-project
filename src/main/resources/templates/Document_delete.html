@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>문서 삭제</title>
+</head>
+<body>
+<div align="center">
+    <h2>문서 삭제를 위한 문서ID를 입력바랍니다</h2><hr>
+    <form action="documentDelete">
+        <table border="1">
+            <tr>
+                <td><label for="documentId">문서 ID</label></td>
+                <td><input type="text" name="documentId" id="documentId"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="확인"></td>
+            </tr>
+        </table>
+
+    </form>
+</div>
+<script language="javaScript">
+    var temp = location.href.split("?");
+    var data = temp[1];
+    document.getElementById("documentId").value = data;
+</script>
+</body>
+</html>

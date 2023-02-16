@@ -14,22 +14,26 @@ import static com.forcs.eformsign.webhook.openAPI.common.JsonData.fileRead;
 public class DocumentDelete {
 
     public static String doc_id = "";
+    public static String data="";
 
-    public void document_delete(){
+    public StringBuilder document_delete(){
         String url = "";
+        StringBuilder sb = null;
 
         try {
             url = Constants.DOCUMENT_DELETE_URL;
 
-            httpConnectionDocumentDelete(url);
+            sb=httpConnectionDocumentDelete(url);
         }catch (Exception e){
             e.getMessage();
         }
+        return sb;
     }
 
-    public void httpConnectionDocumentDelete(String urlData){
+    public StringBuilder httpConnectionDocumentDelete(String urlData){
         String accessToken = "";
         String totalUrl = "";
+        StringBuilder sb = null;
         String jsondata = "";
 
         try {
@@ -37,8 +41,7 @@ public class DocumentDelete {
 
             accessToken = Constants.ACCESS_TOKEN;
             totalUrl = urlData;
-            JsonData.DOCUMENT_DELETE_JSON = fileRead("DocumentDelete.json");
-            jsondata = JsonData.DOCUMENT_DELETE_JSON;
+            jsondata = "{\"document_ids\":[\""+data+"\"]}";
 
             URL url = new URL(totalUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -50,9 +53,10 @@ public class DocumentDelete {
                 os.write(input, 0, input.length);
             }
 
-            Constants.print(conn, "문서 삭제");
+            sb = Constants.print(conn, "문서 삭제");
         }catch (Exception e){
             e.getMessage();
         }
+        return sb;
     }
 }

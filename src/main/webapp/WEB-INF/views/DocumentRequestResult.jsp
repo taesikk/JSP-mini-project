@@ -5,19 +5,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8" name="viewport" content="width=device-width">
-<title>문서 목록 조회 결과</title>
+<title>진행 문서 목록 조회 결과</title>
 </head>
 <script>
     var code = "${code}";
     var result = "${result}";
     alert("code : " + code + "\n result : " + result);
-    location.href="Document_request.html";
+    history.go(-1);
 </script>
 <body>
-
-<div align="center" width="80%">
-    <h2>문서 목록 조회 결과입니다.</h2>
-</div>
 
 </body>
 </html>

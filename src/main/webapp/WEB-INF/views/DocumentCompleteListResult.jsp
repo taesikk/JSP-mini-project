@@ -27,7 +27,7 @@
             <td>${doc_name[status.index]}</td>
             <td>${create_name[status.index]}</td>
             <td>${create_id[status.index]}</td>
-            <td><input type="button" value="삭제하기" onclick=""</td>
+            <td><input type="button" value="삭제하기" onclick="location.href='Document_delete.html?' + '${item}'"</td>
         <tr>
         </c:if>
         </c:forEach>
