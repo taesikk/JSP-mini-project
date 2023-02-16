@@ -22,6 +22,8 @@
 
         var temp = location.href.split("?");
         var temp_id = temp[1];
+        var accessToken = window.localStorage.getItem("accessToken");
+        var refreshToken = window.localStorage.getItem("refreshToken");
 
         var document_option = {
            "company" : {
@@ -32,8 +34,8 @@
            "user" : {
                 "type" : "01" ,
                 "id": "dlwhsktm@gmail.com",
-                "access_token" : "",    // Access Token 입력 (OpenAPI Access Token 참조)
-                "refresh_token" : ""    // Refresh Token 입력 (OpenAPI Access Token 참조)
+                "access_token" : accessToken,    // Access Token 입력 (OpenAPI Access Token 참조)
+                "refresh_token" : refreshToken    // Refresh Token 입력 (OpenAPI Access Token 참조)
             },
             "mode" : {
                 "template_id" : temp_id, // template id 입력

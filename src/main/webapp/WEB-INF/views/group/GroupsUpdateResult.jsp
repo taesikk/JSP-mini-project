@@ -12,7 +12,8 @@
   	<tr><td> GroupId </td><td> GroupName </td></tr>
   	<tr><td> ${idJsp} </td><td> ${nameJsp} </td></tr>
 </table>
-    <p><textarea col="50" rows="10"> ${result}</textarea></p>
+    <p><textarea col="50" rows="10"> ${result}</textarea></p><br>
+    <input value="뒤로가기" type="button" onClick="history.go(-1)">
 </div>
 </body>
 </html>

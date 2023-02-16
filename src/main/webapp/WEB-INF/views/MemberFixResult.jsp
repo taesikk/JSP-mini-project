@@ -13,7 +13,8 @@
   	<tr><td>CompanyId</td><td>Name</td><td>Id</td></tr>
   	<tr><td> ${companyId}</td><td>${name}</td><td>${id}</td></tr>
 </table>
-    <p><textarea col="50" rows="10"> ${result}</textarea></p>
+    <p><textarea col="50" rows="10"> ${result}</textarea></p><br>
+    <input value="뒤로가기" type="button" onClick="history.go(-1)">
 </div>
 </body>
 </html>

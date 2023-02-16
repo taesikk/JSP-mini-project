@@ -35,10 +35,15 @@
         <button id="btn_22" style="width:150px; height:30px; display: none;" onclick="actionTest('22');"></button>
     </div>
     <script>
+        var accessToken = window.localStorage.getItem("accessToken");
+        var refreshToken = window.localStorage.getItem("refreshToken");
+        console.log(refreshToken);
+        console.log(accessToken);
         var eformsign = new EformSignDocument();
 
         var temp = location.href.split("?");
         var temp_id = temp[1];
+
 
         var document_option = {
             "company" : {
@@ -49,8 +54,8 @@
             "user" : {
                     "type" : "01" ,
                     "id": "dlwhsktm@gmail.com",
-                    "access_token" : "",
-                    "refresh_token" : "",
+                    "access_token" : accessToken,
+                    "refresh_token" : refreshToken,
                     "internal_token" : "",  // 내부자 처리 시 사용자를 인증할 Internal Token 입력 (추후 Webhook에서 제공 예정)
                     "external_token" : "",  // 외부자 처리 시 사용자를 인증할 External Token 입력 (Webhook에서 제공)
                     "external_user_info" : {

@@ -33,8 +33,8 @@
         <tr>
         </c:if>
         </c:forEach>
-    </table>
-
+    </table><br>
+    <input value="뒤로가기" type="button" onClick="history.go(-1)">
 
 </div>
 

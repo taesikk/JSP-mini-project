@@ -14,7 +14,8 @@
   	<tr><td>Code</td><td>Message</td><td>Status</td></tr>
   	<tr><td>${code}</td><td>${message}</td><td>${status}</td></tr>
 </table>
-    <p><textarea col="50" rows="10"> ${result}</textarea></p>
+    <p><textarea col="50" rows="10"> ${result}</textarea></p><br>
+    <input value="뒤로가기" type="button" onClick="history.go(-1)">
 </div>
 </body>
 </html>

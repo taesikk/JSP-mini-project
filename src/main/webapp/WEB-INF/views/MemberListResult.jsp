@@ -28,7 +28,8 @@
             </c:if>
             </c:forEach>
     </table>
-    <p><textarea col="500" rows="10">응답 json : ${json}</textarea></p>
+    <p><textarea col="500" rows="10">응답 json : ${json}</textarea></p><br>
+    <input value="뒤로가기" type="button" onClick="history.go(-1)">
 
 </div>
 
