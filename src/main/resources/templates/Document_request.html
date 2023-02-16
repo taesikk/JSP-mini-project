@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>문서 재요청</title>
+  <style>
+    textarea {
+
+    }
+  </style>
+</head>
+
+<body>
+<div align="center">
+  <h2>재요청에 필요한 json을 완성해야 합니다</h2><hr>
+  <form action="documentRequest">
+    <table border="1">
+      <tr>
+        <td>doc_id</td><td><input value="" type="text" id="inputBox" name="docId"></td>
+      </tr>
+      <tr>
+        <td>json</td><td><textarea id="area" name="jsonData" col="200" rows="20"></textarea></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center"><input type="submit" value="확인"></td>
+      </tr>
+    </table>
+
+
+  </form>
+
+</div>
+<script language="javaScript">
+    var temp = location.href.split("?");
+    var doc_id = temp[1];
+    console.log("doc_id : " + doc_id);
+    document.getElementById("inputBox").value = doc_id;
+    //$('#inputBox').attr('value', doc_id);
+    var box = document.getElementById("area");
+    box.value=`{
+  "input": {
+    "next_steps": [
+      {
+        "step_type": "",
+        "approvers": [
+          {
+            "seq": ,
+            "user_id": "",
+            "user_name": "",
+            "code": "+82",
+            "number": "",
+            "auth_password": "",
+            "auth_hint": "",
+            "auth_valid_time": ,
+            "approval_line_name": "",
+            "use_mobile_auth": false,
+            "use_mobile_auth_view": false,
+            "unselected_sections": [
+
+            ]
+          }
+        ],
+        "comment": ""
+      }
+    ]
+  }
+}`;
+  </script>
+</body>
+</html>

@@ -15,12 +15,11 @@ public class DocumentList {
 
     public StringBuilder document_list() {
         String url = "";
-        StringBuilder sb=null;
-
+        StringBuilder sb = null;
         try {
             url = Constants.DOCUMENT_LIST_URL;
 
-            sb=httpConnectionDocumentList(url);
+            sb = httpConnectionDocumentList(url);
         } catch (NullPointerException e) {
             e.getMessage();
         }
@@ -31,7 +30,7 @@ public class DocumentList {
         String accessToken = "";
         String jsondata = "";
         String totalUrl = urlData;
-        StringBuilder sb=null;
+        StringBuilder sb = null;
         try {
             accessToken = Constants.ACCESS_TOKEN;
 
@@ -48,7 +47,7 @@ public class DocumentList {
                 os.write(input, 0, input.length);
             }
 
-            sb=Constants.print(conn, "문서 목록 조회");
+            sb = Constants.print(conn, "문서 목록 조회");
         } catch (Exception e) {
             e.getMessage();
         }
