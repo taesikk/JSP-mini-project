@@ -103,9 +103,31 @@ public class DocumentController {
     @RequestMapping(value = "/documentRequest")
     public String documentRequest(String docId, String jsonData, Model model){
         System.out.println("docId : " +docId + ", jsonData : " + jsonData);
-        /*DocumentRequest.doc_id = docId;
+        DocumentRequest.doc_id = docId;
+        DocumentRequest.jsonData = jsonData;
+        JSONParser parser = new JSONParser();
+        JSONObject jsonObject = null;
+        String code = "";
+        String result = "";
+
         DocumentRequest documentRequest = new DocumentRequest();
-        documentRequest.document_request();*/
-        return "DocumentListResult";
+        StringBuilder sb = documentRequest.document_request();
+
+        try {
+            jsonObject = (JSONObject) parser.parse(sb.toString());
+            if (jsonObject.get("code").toString().equals("-1")){
+                code = jsonObject.get("status").toString();
+                result = jsonObject.get("message").toString();
+            } else {
+                code = jsonObject.get("code").toString();
+                result = jsonObject.get("ErrorMessage").toString();
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        model.addAttribute("code", code);
+        model.addAttribute("result", result);
+        return "DocumentRequestResult";
     }
 }

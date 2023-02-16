@@ -14,31 +14,32 @@ import java.net.URL;
 
 public class DocumentRequest {
     public static String doc_id = "";
+    public static String jsonData = "";
 
-    public void document_request() {
+    public StringBuilder document_request() {
         String url = "";
+        StringBuilder sb = null;
 
         try {
-            fileRead(Constants.DOC_ID_FILE_URL);
+            //fileRead(Constants.DOC_ID_FILE_URL);
             url = Constants.DOCUMENT_REQUEST_URL + doc_id + "/re_request_outsider";
 
-            httpConnectionDocumentRequest(url);
+            sb = httpConnectionDocumentRequest(url);
         } catch (Exception e) {
             e.getMessage();
         }
-
-
+        return sb;
     }
 
-    public void httpConnectionDocumentRequest(String urlData) {
+    public StringBuilder httpConnectionDocumentRequest(String urlData) {
         String totalUrl = "";
         String accessToken = "";
         String jsondata = "";
-
+        StringBuilder sb = null;
         try {
             totalUrl = urlData;
             accessToken = Constants.ACCESS_TOKEN;
-            jsondata = JsonData.DOCUMENT_REQUEST_JSON;
+            jsondata = jsonData;
 
             URL url = new URL(totalUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -50,10 +51,11 @@ public class DocumentRequest {
                 os.write(input, 0, input.length);
             }
 
-            Constants.print(conn, "문서 재요청");
+            sb = Constants.print(conn, "문서 재요청");
         } catch (Exception e) {
             e.getMessage();
         }
+        return sb;
     }
 
     public static void fileRead(String name) {
