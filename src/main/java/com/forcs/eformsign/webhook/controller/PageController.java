@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.json.simple.parser.JSONParser;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.*;
@@ -30,6 +31,8 @@ import java.io.Reader;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
+import static java.awt.SystemColor.window;
+
 @Controller
 @RequestMapping(value = "")
 public class PageController {
@@ -41,8 +44,12 @@ public class PageController {
         try {
             Object ob = new JSONParser().parse(new FileReader(".\\src\\main\\java\\com\\forcs\\eformsign\\webhook\\openAPI\\data\\token.json"));
             JSONObject js = (JSONObject) ob;
-            Constants.ACCESS_TOKEN= js.get("access-token").toString();
-            Constants.REFRESH_TOKEN= js.get("refresh-token").toString();
+            Constants.ACCESS_TOKEN = js.get("access-token").toString();
+            Constants.REFRESH_TOKEN = js.get("refresh-token").toString();
+
+            ob = new JSONParser().parse(new FileReader(".\\src\\main\\java\\com\\forcs\\eformsign\\webhook\\openAPI\\data\\tokenInfo.json"));
+            js = (JSONObject) ob;
+            TokenAccess.member_id = js.get("id").toString();
 
             System.out.println(Constants.ACCESS_TOKEN);
             System.out.println(Constants.REFRESH_TOKEN);
@@ -53,10 +60,13 @@ public class PageController {
             System.out.println(Constants.ACCESS_TOKEN);
             System.out.println(Constants.REFRESH_TOKEN);
 
-            model.addAttribute("accessToken",Constants.ACCESS_TOKEN);
-            model.addAttribute("refreshToken",Constants.REFRESH_TOKEN);
+            model.addAttribute("accessToken", Constants.ACCESS_TOKEN);
+            model.addAttribute("refreshToken", Constants.REFRESH_TOKEN);
+            model.addAttribute("userId", TokenAccess.member_id);
+            System.out.println("/home member_id : " + TokenAccess.member_id);
 
-        }catch (Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -118,6 +128,9 @@ public class PageController {
     @RequestMapping(value = "/login")
     public String login(String userId, String apikey, String secret, Model model) {
         JSONObject jsonObject = new JSONObject();
+        String api = "";
+        String id="";
+        String sKey="";
 
         System.out.println("login입니다.");
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
@@ -130,6 +143,7 @@ public class PageController {
         jsonObject.put("id", TokenAccess.member_id);
         jsonObject.put("api-key", Constants.API_KEY);
         jsonObject.put("secret", EformsignSignatureMake.secret);
+
 
         try {
             FileWriter file = new FileWriter(".\\src\\main\\java\\com\\forcs\\eformsign\\webhook\\openAPI\\data\\tokenInfo.json");
@@ -147,8 +161,23 @@ public class PageController {
         System.out.println("Constants AccessToken :  " + Constants.ACCESS_TOKEN);
         System.out.println("Constants RefreshToken : " + Constants.REFRESH_TOKEN);
 
+        try {
+            Object ob = new JSONParser().parse(new FileReader(".\\src\\main\\java\\com\\forcs\\eformsign\\webhook\\openAPI\\data\\tokenInfo.json"));
+            JSONObject js = (JSONObject) ob;
+            api =  js.get("api-key").toString();
+            id =  js.get("id").toString();
+            sKey = js.get("secret").toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         model.addAttribute("accessToken", Constants.ACCESS_TOKEN);
         model.addAttribute("refreshToken", Constants.REFRESH_TOKEN);
+        model.addAttribute("userId", TokenAccess.member_id);
+        model.addAttribute("api", api);
+        model.addAttribute("id", id);
+        model.addAttribute("sKey", sKey);
+
 
         //return ResponseEntity.status(302).header("Location", "/home?atoken=" + Constants.ACCESS_TOKEN + "&rtoken=" + Constants.REFRESH_TOKEN).build();
         return "TokenAccessResult";

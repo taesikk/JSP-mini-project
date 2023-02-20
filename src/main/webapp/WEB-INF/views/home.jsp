@@ -11,8 +11,11 @@
     var acc = "${accessToken}";
     console.log(acc);
     var ref = "${refreshToken}";
+    var userId = "${userId}";
     window.localStorage.setItem("accessToken",acc);
     window.localStorage.setItem("refreshToken",ref);
+    window.localStorage.setItem("userId", userId);
+
 </script>
 <frameset cols="20%,*">
     <frame src="Frame1.html"></frame>

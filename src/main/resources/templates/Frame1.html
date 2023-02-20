@@ -5,7 +5,9 @@
     <title>Title</title>
 </head>
 <body bgcolor="DDDDDD">
+
     <ul>
+        <input value="" type="text" id="userId">
         <li><a href="https://www.eformsign.com/eform/index.html" target="right">홈페이지</a></li>
         <li><a href="Template.html" target="right">작성 가능한 템플릿 목록</a></li>
         <li><a href="DocumentList.html" target="right">문서 목록 조회</a></li>
@@ -13,5 +15,9 @@
         <li><a href="group/Group.html" target="right">그룹 API</a></li>
         <li><a href="Setting.html" target="right">설정</a></li>
     </ul>
+    <script lang="javascript">
+    var userId = window.localStorage.getItem('userId');
+    document.getElementById("userId").value = userId;
+</script>
 </body>
 </html>

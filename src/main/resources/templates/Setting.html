@@ -12,20 +12,29 @@
         <table align="center">
             <tr>
                 <td>계정</td>
-                <td><label for="userId"><input type="text" id="userId" name="userId"></label><br></td>
+                <td><label for="userId"><input value="" type="text" id="userId" name="userId"></label><br></td>
             </tr>
             <tr>
                 <td>API key</td>
-                <td><label for="apikey"><input type="text" id="apikey" name="apikey"></label><br></td>
+                <td><label for="apikey"><input value="" type="text" id="apikey" name="apikey"></label><br></td>
             </tr>
             <tr>
                 <td>비밀키</td>
-                <td><label for="secret"><input type="text" id="secret" name="secret"></label><br></td>
+                <td><label for="secret"><input value="" type="text" id="secret" name="secret"></label><br></td>
             </tr>
             <tr><td colspan="2" align="center"><input type="submit" value="저장"></td></tr>
 
         </table>
     </form>
 </div>
+<script lang="javascript">
+    var api = window.localStorage.getItem('api');
+    var id = window.localStorage.getItem('id');
+    var sKey = window.localStorage.getItem('sKey');
+
+    document.getElementById("userId").value = id;
+    document.getElementById("apikey").value = api;
+    document.getElementById("secret").value = sKey;
+</script>
 </body>
 </html>
