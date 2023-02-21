@@ -42,9 +42,6 @@ public class MainController {
             params = "{response_code : 200, result : completed}";
         }
 
-        //요청받은 body를 파일에 쓰는 메소드
-        fileWrite(params, "GET");
-
         return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body("{\"code\": 200, \n\"result\": \"success\" }"); // 클라이언트에 값 전송
     }
 
@@ -56,11 +53,9 @@ public class MainController {
         HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 
         ip = req.getHeader("X-FORWARDED-FOR");
-        //요청받은 body를 파일에 쓰는 메소드
-        //fileWrite(params, "POST");
 
         logger.info("(" + ip + ") " + params);
-        //System.out.println("result : " + params);
+
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 

@@ -106,7 +106,7 @@ function page(){
             }).appendTo(pagination).addClass('clickable');
 
             // [1,2,3,4,5,6,7,8]
-            for (var page = nowp ; page < endp-1; page++) {
+            for (var page = nowp ; page < endp; page++) {
                 $('<span class="pageNum"></span>').text(page + 1).bind('click', {newPage: page}, function(event) {
                     currentPage = event.data['newPage'];
                     $table.trigger('repaginate');
