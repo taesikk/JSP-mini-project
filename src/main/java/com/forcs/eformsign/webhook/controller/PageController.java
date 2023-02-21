@@ -40,16 +40,14 @@ public class PageController {
     @RequestMapping(value = "/home")
     public String main(Model model) throws FileNotFoundException {
         System.out.println("homehome");
+        String api=null;
+        String secret=null;
 
         try {
             Object ob = new JSONParser().parse(new FileReader(".\\src\\main\\java\\com\\forcs\\eformsign\\webhook\\openAPI\\data\\token.json"));
             JSONObject js = (JSONObject) ob;
             Constants.ACCESS_TOKEN = js.get("access-token").toString();
             Constants.REFRESH_TOKEN = js.get("refresh-token").toString();
-
-            ob = new JSONParser().parse(new FileReader(".\\src\\main\\java\\com\\forcs\\eformsign\\webhook\\openAPI\\data\\tokenInfo.json"));
-            js = (JSONObject) ob;
-            TokenAccess.member_id = js.get("id").toString();
 
             System.out.println(Constants.ACCESS_TOKEN);
             System.out.println(Constants.REFRESH_TOKEN);
@@ -60,10 +58,17 @@ public class PageController {
             System.out.println(Constants.ACCESS_TOKEN);
             System.out.println(Constants.REFRESH_TOKEN);
 
+            ob = new JSONParser().parse(new FileReader(".\\src\\main\\java\\com\\forcs\\eformsign\\webhook\\openAPI\\data\\tokenInfo.json"));
+            js = (JSONObject) ob;
+            TokenAccess.member_id = js.get("id").toString();
+            api = js.get("api-key").toString();
+            secret = js.get("secret").toString();
+
             model.addAttribute("accessToken", Constants.ACCESS_TOKEN);
             model.addAttribute("refreshToken", Constants.REFRESH_TOKEN);
             model.addAttribute("userId", TokenAccess.member_id);
-            System.out.println("/home member_id : " + TokenAccess.member_id);
+            model.addAttribute("APIKey", api);
+            model.addAttribute("secret", secret);
 
 
         } catch (Exception e) {
@@ -173,10 +178,9 @@ public class PageController {
 
         model.addAttribute("accessToken", Constants.ACCESS_TOKEN);
         model.addAttribute("refreshToken", Constants.REFRESH_TOKEN);
-        model.addAttribute("userId", TokenAccess.member_id);
-        model.addAttribute("api", api);
-        model.addAttribute("id", id);
-        model.addAttribute("sKey", sKey);
+        model.addAttribute("APIKey", api);
+        model.addAttribute("userId", id);
+        model.addAttribute("secret", sKey);
 
 
         //return ResponseEntity.status(302).header("Location", "/home?atoken=" + Constants.ACCESS_TOKEN + "&rtoken=" + Constants.REFRESH_TOKEN).build();

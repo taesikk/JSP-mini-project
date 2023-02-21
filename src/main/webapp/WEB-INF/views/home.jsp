@@ -12,9 +12,13 @@
     console.log(acc);
     var ref = "${refreshToken}";
     var userId = "${userId}";
+    var APIKey = "${APIKey}";
+    var secret = "${secret}";
     window.localStorage.setItem("accessToken",acc);
     window.localStorage.setItem("refreshToken",ref);
     window.localStorage.setItem("userId", userId);
+    window.localStorage.setItem("APIKey", APIKey);
+    window.localStorage.setItem("secret", secret);
 
 </script>
 <frameset cols="20%,*">
