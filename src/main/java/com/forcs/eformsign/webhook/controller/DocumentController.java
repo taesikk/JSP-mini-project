@@ -49,7 +49,13 @@ public class DocumentController {
                 }else {
                     recipient_id[i] = sample.get("email").toString();
                 }
-                recipient_name[i] = sample.get("name").toString();
+                if (sample.get("name") == null){
+                    recipient_name[i] = "noName";
+                }
+                else {
+                    recipient_name[i] = sample.get("name").toString();
+                }
+
 
             }
 
