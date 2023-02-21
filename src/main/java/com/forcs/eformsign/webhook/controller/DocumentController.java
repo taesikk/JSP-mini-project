@@ -50,15 +50,12 @@ public class DocumentController {
                     recipient_id[i] = sample.get("email").toString();
                 }
                 if (sample.get("name") == null){
-                    recipient_name[i] = "noName";
+                    recipient_name[i] = "(이름없음)";
                 }
                 else {
                     recipient_name[i] = sample.get("name").toString();
                 }
-
-
             }
-
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
