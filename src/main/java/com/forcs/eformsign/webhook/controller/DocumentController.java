@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "")
@@ -191,7 +193,7 @@ public class DocumentController {
                 create_name[i] = sample.get("name").toString();
                 create_id[i] = sample.get("id").toString();
                 sample = (JSONObject) jsonObject.get("current_status");
-                status_type[i] = sample.get("status_type").toString();
+                status_type[i] = statusCallBack(sample.get("status_type").toString());
             }
 
         }catch (Exception e){
@@ -204,5 +206,49 @@ public class DocumentController {
         model.addAttribute("create_name", create_name);
         model.addAttribute("status_type", status_type);
         return "DocumentAllList";
+    }
+
+    public String statusCallBack(String str){
+        Map<String,String> map = new HashMap<>();
+        map.put("001","문서 임시 저장");
+        map.put("002","문서 생성");
+        map.put("003","문서 최종 완료");
+        map.put("010","결재요청");
+        map.put("011","결제반려");
+        map.put("012","결제승인");
+        map.put("013","결재요청취소");
+        map.put("020","내부자 요청");
+        map.put("021","내부자 반려");
+        map.put("022","내부자 승인");
+        map.put("023","내부자 임시 저장");
+        map.put("030","외부자 요청");
+        map.put("031","외부자 반려");
+        map.put("032","외부자 승인");
+        map.put("033","외부자 재요청");
+        map.put("034","외부자 열람");
+        map.put("035","외부자 임시저장");
+        map.put("040","문서 취소 요청");
+        map.put("041","문서 취소 요청거절");
+        map.put("042","문서 취소");
+        map.put("043","문서 수정");
+        map.put("044","문서 수정 취소");
+        map.put("045","문서 반려요청");
+        map.put("046","문서 반려요청 거절");
+        map.put("047","문서 삭제요청");
+        map.put("048","문서 삭제요청 거절");
+        map.put("049","문서 삭제");
+        map.put("050","완료 문서 pdf 전송");
+        map.put("051","문서 이관");
+        map.put("060","참여자 요청");
+        map.put("061","참여자 반려");
+        map.put("062","참여자 승인");
+        map.put("063","참여자 재요청");
+        map.put("064","참여자 문서열람");
+        map.put("070","검토자 요청");
+        map.put("071","검토자 반려");
+        map.put("072","검토자 승인");
+        map.put("073","검토자 재요청");
+        map.put("074","검토자 문서열람");
+        return map.get(str);
     }
 }
