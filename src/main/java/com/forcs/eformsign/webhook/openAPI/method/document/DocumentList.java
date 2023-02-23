@@ -40,7 +40,11 @@ public class DocumentList {
 
             if (number==1){
                 jsondata = JsonData.DOCUMENT_LIST_JSON;
-            }else if (number==2) jsondata = JsonData.DOCUMENT_COMPLETE_LIST_JSON;
+            }else if (number==2) {
+                jsondata = JsonData.DOCUMENT_COMPLETE_LIST_JSON;
+            } else {
+                jsondata = JsonData.DOCUMENT_ALL_LIST_JSON;
+            }
 
 
             conn = Constants.headerSet(conn, accessToken, "POST");
@@ -52,7 +56,11 @@ public class DocumentList {
 
             if (number==1){
                 sb = Constants.print(conn, "진행 문서 목록 조회");
-            }else if (number==2) sb=Constants.print(conn, "완료 문서 목록 조회");
+            }else if (number==2) {
+                sb=Constants.print(conn, "완료 문서 목록 조회");
+            } else {
+                sb = Constants.print(conn, "문서 관리");
+            }
 
         } catch (Exception e) {
             e.getMessage();

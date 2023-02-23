@@ -18,13 +18,29 @@
   <form action="documentRequest">
     <table border="1">
       <tr>
-        <td>doc_id</td><td><input value="" type="text" id="inputBox" name="docId"></td>
+        <td>doc_id</td><td colspan="2"><input value="" type="text" id="inputBox" name="docId"></td>
       </tr>
       <tr>
         <td>json</td><td><textarea id="area" name="jsonData" col="200" rows="20"></textarea></td>
+        <td>
+          <pre>
+            (필수 입력해야할 목록)
+
+            step_type : 05(수신자), 06(검토자)
+
+            seq : 현재 단계 (int)
+
+            user_id : 수신자 이메일
+
+            user_name : 수신자 이름
+
+            auth_valid_time : 유효기간(24시간 단위)
+
+          </pre>
+        </td>
       </tr>
       <tr>
-        <td colspan="2" align="center"><input type="submit" value="확인"></td>
+        <td colspan="3" align="center"><input type="submit" value="확인"></td>
       </tr>
     </table>
   </form><br>

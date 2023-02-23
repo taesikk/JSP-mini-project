@@ -166,4 +166,43 @@ public class DocumentController {
 
         return "DocumentRequestResult";
     }
+
+    @RequestMapping(value = "/documentAllList")
+    public String documentAllList(Model model){
+        DocumentList documentList = new DocumentList();
+        StringBuilder sb =documentList.document_list(3);
+        JSONParser parser = new JSONParser();
+        JSONObject jsonObject = null;
+        JSONArray jsonArray = new JSONArray();
+        String[] doc_id = new String[100];
+        String[] doc_name = new String[100];
+        String[] create_name = new String[100];
+        String[] create_id = new String[100];
+        String[] status_type = new String[100];
+
+        try {
+            jsonObject = (JSONObject) parser.parse(sb.toString());
+            jsonArray = (JSONArray) jsonObject.get("documents");
+            for (int i = 0; i<jsonArray.size();i++){
+                jsonObject = (JSONObject) jsonArray.get(i);
+                doc_id[i] = jsonObject.get("id").toString();
+                doc_name[i] = jsonObject.get("document_name").toString();
+                JSONObject sample = (JSONObject) jsonObject.get("creator");
+                create_name[i] = sample.get("name").toString();
+                create_id[i] = sample.get("id").toString();
+                sample = (JSONObject) jsonObject.get("current_status");
+                status_type[i] = sample.get("status_type").toString();
+            }
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        model.addAttribute("doc_id", doc_id);
+        model.addAttribute("doc_name", doc_name);
+        model.addAttribute("create_id", create_id);
+        model.addAttribute("create_name", create_name);
+        model.addAttribute("status_type", status_type);
+        return "DocumentAllList";
+    }
 }

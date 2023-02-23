@@ -22,6 +22,7 @@ public class JsonData {
 
     public static final String DOCUMENT_LIST_JSON = fileRead("DocumentList.json");
     public static final String DOCUMENT_COMPLETE_LIST_JSON = fileRead("DocumentCompleteList.json");
+    public static final String DOCUMENT_ALL_LIST_JSON = fileRead("DocumentAllList.json");
     public static String DOCUMENT_DELETE_JSON = fileRead("DocumentDelete.json");
     public static final String DOCUMENT_DOWNLOAD_JSON = fileRead("DocumentDownload.json");
     public static final String DOCUMENT_DOWNLOAD_ATTACH_JSON = fileRead("DocumentDownloadAttachFile.json");
