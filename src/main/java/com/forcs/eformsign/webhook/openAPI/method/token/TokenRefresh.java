@@ -8,22 +8,25 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class TokenRefresh {
-    public void token_refresh() {
+    public StringBuilder token_refresh() {
+        StringBuilder sb = null;
         try {
             String url = Constants.REFRESH_TOKEN_URL + Constants.REFRESH_TOKEN;
 
-            httpConnectionRefresh(url);
+            sb = httpConnectionRefresh(url);
         } catch (Exception e) {
             e.getMessage();
         }
+        return sb;
     }
 
-    public static void httpConnectionRefresh(String urlData) {
+    public static StringBuilder httpConnectionRefresh(String urlData) {
 
         String accessToken = "";
         String newRefreshToken = "";
         String newAccessToken = "";
         JSONObject jsonObject = new JSONObject();
+        StringBuilder response = null;
 
         try {
             URL url = new URL(urlData);
@@ -35,7 +38,7 @@ public class TokenRefresh {
 
             conn.connect();
             try {
-                StringBuilder response = Constants.print(conn, "토큰 갱신, 재발급");
+                response = Constants.print(conn, "토큰 갱신, 재발급");
 
                 newRefreshToken = response.substring(response.indexOf("refresh_token") + 16, response.indexOf("access_token") - 3);
                 //System.out.println("new refreshtoken : " + newRefreshToken);
@@ -59,5 +62,6 @@ public class TokenRefresh {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return response;
     }
 }

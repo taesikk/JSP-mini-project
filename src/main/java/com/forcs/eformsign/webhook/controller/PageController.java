@@ -43,6 +43,7 @@ public class PageController {
         JSONObject js = null;
         String api=null;
         String secret=null;
+        StringBuilder sb = null;
 
         try {
             js = File.fileRead("token.json");
@@ -53,7 +54,9 @@ public class PageController {
             System.out.println(Constants.REFRESH_TOKEN);
 
             TokenRefresh tokenRefresh = new TokenRefresh();
-            tokenRefresh.token_refresh();
+            sb = tokenRefresh.token_refresh();
+            File.logWrite("(토큰 재발급) " + sb.toString());
+
 
             System.out.println(Constants.ACCESS_TOKEN);
             System.out.println(Constants.REFRESH_TOKEN);
@@ -86,7 +89,8 @@ public class PageController {
         Constants.REFRESH_TOKEN = refreshToken;
 
         TokenRefresh tokenRefresh = new TokenRefresh();
-        tokenRefresh.token_refresh();
+        StringBuilder sb = tokenRefresh.token_refresh();
+        File.logWrite("(토큰 재발급) " + sb.toString());
         System.out.println("Constants AccessToken :  " + Constants.ACCESS_TOKEN);
         System.out.println("Constants RefreshToken : " + Constants.REFRESH_TOKEN);
 
@@ -99,6 +103,7 @@ public class PageController {
     @RequestMapping(value = "/login")
     public String login(String userId, String apikey, String secret, Model model) {
         JSONObject jsonObject = new JSONObject();
+        StringBuilder sb = null;
         String api = "";
         String id="";
         String sKey="";
@@ -119,7 +124,8 @@ public class PageController {
         File.fileWrite("tokenInfo.json", jsonObject);
 
         TokenAccess tokenAccess = new TokenAccess();
-        tokenAccess.token_access();
+        sb = tokenAccess.token_access();
+        File.logWrite("(토큰 발급) " + sb.toString());
 
         System.out.println("Constants AccessToken :  " + Constants.ACCESS_TOKEN);
         System.out.println("Constants RefreshToken : " + Constants.REFRESH_TOKEN);

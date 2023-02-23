@@ -16,7 +16,8 @@ public class TokenAccess {
     //토큰값을 저장하기 위한 Map
     public static String member_id = "";
 
-    public void token_access() {
+    public StringBuilder token_access() {
+        StringBuilder sb = null;
         try {
             //result에 eformsign_signature, executionTime값 불러오기, json set
             Map<String, Object> result = new EformsignSignatureMake().signMake();
@@ -27,18 +28,20 @@ public class TokenAccess {
             System.out.println("executionTime : " + executionTime);
 
             //http 통신 메소드 호출
-            httpGetConnection(Constants.TOKEN_ACCESS_URL, signature, jsondata);
+            sb = httpGetConnection(Constants.TOKEN_ACCESS_URL, signature, jsondata);
         } catch (Exception e) {
             System.out.print(e.getMessage());
         }
+        return sb;
     }
 
-    public static void httpGetConnection(String UrlData, String signature, String json) {
+    public static StringBuilder httpGetConnection(String UrlData, String signature, String json) {
         String totalUrl = UrlData;
         String encodeBytes = "";
         String eformsign_signature = signature;
         String jsondata = json;
         JSONObject jsonObject = new JSONObject();
+        StringBuilder response = null;
 
         //API KEY Base64로 인코딩
         encodeBytes = encoding(Constants.API_KEY);
@@ -67,7 +70,7 @@ public class TokenAccess {
 
             conn.connect();
             try { // 결과값 받아서 refresh-token, access-token 인덱싱
-                StringBuilder response = Constants.print(conn, "토큰 발급");
+                response = Constants.print(conn, "토큰 발급");
                 refreshToken = response.substring(response.indexOf("refresh_token") + 16, response.indexOf("access_token") - 3);
                 //System.out.println("refreshtoken : " + refreshToken);
                 accessToken = response.substring(response.indexOf("access_token") + 15, response.length() - 4);
@@ -92,6 +95,7 @@ public class TokenAccess {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return response;
     }
 
     public static String encoding(String param){

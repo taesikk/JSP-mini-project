@@ -22,6 +22,7 @@ public class TemplateController {
     public String templateList(Model model) {
         DocumentTemplateList documentTemplateList = new DocumentTemplateList();
         StringBuilder sb = documentTemplateList.document_template_list();
+        File.logWrite("(템플릿 목록 조회) " + sb.toString());
 
         JSONParser parser = new JSONParser();
         JSONObject jsonObject = null;

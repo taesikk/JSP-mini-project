@@ -32,6 +32,8 @@ public class MemberController {
 
         MemberList memberList = new MemberList();
         StringBuilder sb = memberList.member_list();
+        File.logWrite("(멤버 목록 조회) " + sb.toString());
+
 
         JSONParser parser = new JSONParser();
         JSONObject jsonObject = null;
@@ -78,7 +80,7 @@ public class MemberController {
 
         MemberFix memberFix = new MemberFix();
         StringBuilder sb =memberFix.member_fix();
-
+        File.logWrite("(멤버 수정) " + sb.toString());
 
         JSONParser parser = new JSONParser();
         JSONObject object;
@@ -109,6 +111,7 @@ public class MemberController {
 
         MemberDelete memberDelete = new MemberDelete();
         StringBuilder sb = memberDelete.member_delete();
+        File.logWrite("(멤버 삭제) " + sb.toString());
 
         JSONParser parser = new JSONParser();
         JSONObject object;

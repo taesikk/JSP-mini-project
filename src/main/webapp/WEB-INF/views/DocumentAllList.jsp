@@ -12,7 +12,7 @@
 <body>
 
 <div align="center" width="80%">
-    <h2>진행 문서 목록 조회 결과입니다.</h2>
+    <h2>문서 관리 조회 결과입니다.</h2>
     <hr>
     <table align="center" border="1" class="paginated">
         <th>진행상태</th>
