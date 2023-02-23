@@ -20,9 +20,10 @@ alert("정보가 성공적으로 저장되었습니다.\n accessToken : ${access
         window.localStorage.setItem("accessToken",acc);
         window.localStorage.setItem("refreshToken",ref);
         window.localStorage.setItem("APIKey", APIKey);
-        window.localStorage.setItem("api", api);
+        window.localStorage.setItem("userId", userId);
         window.localStorage.setItem("secret", secret);
 
+        parent.leftFrame.location.reload(true);
     </script>
 <body>
 

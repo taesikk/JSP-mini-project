@@ -22,7 +22,7 @@
 
 </script>
 <frameset cols="20%,*">
-    <frame src="Frame1.html"></frame>
+    <frame src="Frame1.html" name="leftFrame"></frame>
     <frame src="Frame2.html" name="right"></frame>
 </frameset>
 <body>

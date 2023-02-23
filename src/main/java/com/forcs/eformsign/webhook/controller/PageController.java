@@ -117,14 +117,6 @@ public class PageController {
 
 
         File.fileWrite("tokenInfo.json", jsonObject);
-        /*try {
-            FileWriter file = new FileWriter(".\\src\\main\\java\\com\\forcs\\eformsign\\webhook\\openAPI\\data\\tokenInfo.json");
-            file.write(jsonObject.toJSONString());
-            file.flush();
-            file.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }*/
 
         TokenAccess tokenAccess = new TokenAccess();
         tokenAccess.token_access();
@@ -133,8 +125,7 @@ public class PageController {
         System.out.println("Constants RefreshToken : " + Constants.REFRESH_TOKEN);
 
         try {
-            Object ob = new JSONParser().parse(new FileReader(".\\src\\main\\java\\com\\forcs\\eformsign\\webhook\\openAPI\\data\\tokenInfo.json"));
-            JSONObject js = (JSONObject) ob;
+            JSONObject js = File.fileRead("tokenInfo.json");
             api =  js.get("api-key").toString();
             id =  js.get("id").toString();
             sKey = js.get("secret").toString();
