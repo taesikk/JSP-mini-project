@@ -26,14 +26,14 @@
 -------------
 ## Setting
 * 사용자가 입력해야할 목록을 설명합니다.
-* ./src/main/java/com/forcs/eformsign/webhook/openAPI/data/ 
-* ./src/main/resources/templates/embedding/
+* json : ./src/main/java/com/forcs/eformsign/webhook/openAPI/data/ 
+* html : ./src/main/resources/templates/embedding/
 
 | 이름              | 설명                               | 필수여부    |
 |-----------------|----------------------------------|---------|
 | tokenInfo.json  | 계정,API Key, 비밀키                  | X       |
 | token.json      | RefreshToken,AccessToken         | X(자동생성) |
-| data/*.json     | request body                     | O       |
+| *.json     | request body                     | O       |
 | *.html | 임베딩 시 필요한 html. 내부의 템플릿 옵션 변경 필요 | O       |
 
 * tokenInfo.json의 경우 프로젝트 시작 후 설정 탭에서 지정 가능
@@ -80,3 +80,9 @@
 * 위치 : ./src/main/resources/templates/embedding/
 
 ----------------
+## 주의사항
+* jsp, logback을 사용하기 위한 몇가지 설정이 필요합니다.
+1. application.properties 내에 jsp, logback 설정이 필요합니다.
+2. ./src/main/java/com/forcs/eformsign/webhook/congig/MvcConfiguration.java 에서 classpath에 대한 설정이 필요합니다.
+3. resorces/logback 하위에 logback-local.xml 을 통한 설정이 필요합니다.
+   * property 태그 안의 경로를 변경할수 있습니다. (변경 시 해당 경로가 존재해야함)
