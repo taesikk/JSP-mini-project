@@ -133,31 +133,4 @@ public class Constants {
 
         return response;
     }
-
-    public static void logWrite(String param, String status, String code) {
-        LocalDateTime now = LocalDateTime.now(); // 현재시간
-        File file = null;
-        FileWriter fileWriter = null;
-        BufferedWriter writer = null;
-
-        try {
-            file = new File(".\\APITest_Auto\\src\\main\\java\\log.txt");
-            fileWriter = new FileWriter(file, true);
-            writer = new BufferedWriter(fileWriter);
-
-            String formatNow = now.format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm")); // 날짜 포맷 세팅
-
-            writer.write(formatNow + " (" + status + ") 응답코드 : " + code + " 데이터 : " + param + "\n");
-            writer.flush();
-
-        } catch (Exception e) {
-            e.getMessage();
-        } finally {
-            try {
-                writer.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
 }
