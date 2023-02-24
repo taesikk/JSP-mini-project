@@ -97,7 +97,7 @@ public class PageController {
         model.addAttribute("accessToken", Constants.ACCESS_TOKEN);
         model.addAttribute("refreshToken", Constants.REFRESH_TOKEN);
 
-        return "TokenRefreshResult";
+        return "token/TokenRefreshResult";
     }
 
     @RequestMapping(value = "/login")
@@ -147,6 +147,6 @@ public class PageController {
 
 
         //return ResponseEntity.status(302).header("Location", "/home?atoken=" + Constants.ACCESS_TOKEN + "&rtoken=" + Constants.REFRESH_TOKEN).build();
-        return "TokenAccessResult";
+        return "token/TokenAccessResult";
     }
 }

@@ -30,8 +30,7 @@ public class TemplateController {
         String[] formId = new String[100];
         String[] name = new String[100];
         String[] createId = new String[100];
-        String[] createName = new String[100];
-        String error = "";
+        String[] createName = new String[100];      String error = "";
 
         try {
 

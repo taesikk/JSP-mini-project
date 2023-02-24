@@ -27,14 +27,14 @@
 ## Setting
 * 사용자가 입력해야할 목록을 설명합니다.
 * ./src/main/java/com/forcs/eformsign/webhook/openAPI/data/ 
-* ./src/main/resources/templates/
+* ./src/main/resources/templates/embedding/
 
 | 이름              | 설명                               | 필수여부    |
 |-----------------|----------------------------------|---------|
 | tokenInfo.json  | 계정,API Key, 비밀키                  | X       |
 | token.json      | RefreshToken,AccessToken         | X(자동생성) |
 | data/*.json     | request body                     | O       |
-| Document_*.html | 임베딩 시 필요한 html. 내부의 템플릿 옵션 변경 필요 | O       |
+| *.html | 임베딩 시 필요한 html. 내부의 템플릿 옵션 변경 필요 | O       |
 
 * tokenInfo.json의 경우 프로젝트 시작 후 설정 탭에서 지정 가능
 * request body의 경우 [swagger](https://app.swaggerhub.com/apis-docs/eformsign_api/eformsign_API_2.0/2.0#/) 에서 제공하는 예시 참조
@@ -77,6 +77,6 @@
 ## 임베딩
 * 문서 작성 및 일괄 작성시 실행됩니다.
 * html내 옵션값을 설정한 후 실행.
-* 위치 : ./src/main/resources/templates
+* 위치 : ./src/main/resources/templates/embedding/
 
 ----------------

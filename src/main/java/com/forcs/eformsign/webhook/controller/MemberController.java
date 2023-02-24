@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.HashMap;
 
 @Controller
-@RequestMapping(value = "")
+@RequestMapping(value = "/member")
 public class MemberController {
     @RequestMapping(value = "/")
     public String mainHome(){
@@ -62,7 +62,7 @@ public class MemberController {
         model.addAttribute("userDepartment", userDepartment);
         model.addAttribute("userPosition", userPosition);
         model.addAttribute("json", sb.toString());
-        return "MemberListResult";
+        return "member/MemberListResult";
     }
     @RequestMapping(value = "/memberFix")
     public String memberFix(String accessToken, String memberId,String jsonName,Boolean jsonEnabled,String jsonNumber
@@ -101,7 +101,7 @@ public class MemberController {
         model.addAttribute("name", name);
         model.addAttribute("id", id);
         model.addAttribute("result", sb.toString());
-        return "MemberFixResult";
+        return "member/MemberFixResult";
     }
 
     @RequestMapping(value = "/memberDelete")
@@ -131,6 +131,6 @@ public class MemberController {
         model.addAttribute("status", status);
         model.addAttribute("result", sb.toString());
 
-        return "MemberDeleteResult";
+        return "member/MemberDeleteResult";
     }
 }

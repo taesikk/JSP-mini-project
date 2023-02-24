@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping(value = "")
+@RequestMapping(value = "/document")
 public class DocumentController {
     @RequestMapping(value = "/documentList")
     public String documentList(Model model) {
@@ -70,7 +70,7 @@ public class DocumentController {
         model.addAttribute("recipient_id", recipient_id);
         model.addAttribute("recipient_name", recipient_name);
 
-        return "DocumentListResult";
+        return "document/DocumentListResult";
     }
 
     @RequestMapping(value = "/documentCompleteList")
@@ -106,7 +106,7 @@ public class DocumentController {
         model.addAttribute("create_id", create_id);
         model.addAttribute("create_name", create_name);
 
-        return "DocumentCompleteListResult";
+        return "document/DocumentCompleteListResult";
     }
 
     @RequestMapping(value = "/documentRequest")
@@ -138,7 +138,7 @@ public class DocumentController {
 
         model.addAttribute("code", code);
         model.addAttribute("result", result);
-        return "DocumentRequestResult";
+        return "document/DocumentRequestResult";
     }
 
     @RequestMapping(value = "/documentDelete")
@@ -168,7 +168,7 @@ public class DocumentController {
         model.addAttribute("code", code);
         model.addAttribute("result", result);
 
-        return "DocumentRequestResult";
+        return "document/DocumentRequestResult";
     }
 
     @RequestMapping(value = "/documentAllList")
@@ -209,7 +209,7 @@ public class DocumentController {
         model.addAttribute("create_id", create_id);
         model.addAttribute("create_name", create_name);
         model.addAttribute("status_type", status_type);
-        return "DocumentAllList";
+        return "document/DocumentAllList";
     }
 
     public String statusCallBack(String str) {
