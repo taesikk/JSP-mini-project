@@ -45,11 +45,11 @@
 * 위치 : ./src/main/java/com/forcs/eformsign/webhook/openAPI
 * openAPI에 관한 로그는 resources/logback/syslog/APILog.txt 에 기록
 
-| 이름      | 설명                                    |
-|---------|---------------------------------------|
-| commmon | api url 정보 및 json 파일을 읽어 변수에 저장하는 클래스 |
-| data    | api전송에 필요한 json 파일                |
-| method  | api의 실질적인 코드                          |
+| 이름     | 설명                                    |
+|--------|---------------------------------------|
+| common | api url 정보 및 json 파일을 읽어 변수에 저장하는 클래스 |
+| data   | api전송에 필요한 json 파일                |
+| method | api의 실질적인 코드                          |
  
 <구현된 API 목록>
 * 토큰 발급
