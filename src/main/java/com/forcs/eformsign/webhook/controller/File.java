@@ -5,6 +5,8 @@ import org.json.simple.parser.JSONParser;
 
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class File {
 
@@ -32,9 +34,11 @@ public class File {
     }
 
     public static void logWrite(String data){
+        LocalDateTime now = LocalDateTime.now();
+        String formatNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         try {
             FileWriter fileWriter = new FileWriter(".\\src\\main\\resources\\logback\\syslog\\APILog.txt", true);
-            fileWriter.write(data);
+            fileWriter.write("(" + formatNow + ") " + data);
             fileWriter.flush();
             fileWriter.close();
         } catch (Exception e) {
