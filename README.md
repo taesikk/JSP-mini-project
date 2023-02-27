@@ -85,5 +85,5 @@
 * jsp, logback을 사용하기 위한 몇가지 설정이 필요합니다.
 1. application.properties 내에 jsp, logback 설정이 필요합니다.
 2. ./src/main/java/com/forcs/eformsign/webhook/congig/MvcConfiguration.java 에서 classpath에 대한 설정이 필요합니다.
-3. resorces/logback 하위에 logback-local.xml 을 통한 설정이 필요합니다.
+3. resources/logback 하위에 logback-local.xml 을 통한 설정이 필요합니다.
    * property 태그 안의 경로를 변경할수 있습니다. (변경 시 해당 경로가 존재해야함)
