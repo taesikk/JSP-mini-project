@@ -36,8 +36,9 @@
 | *.json     | request body                     | O       |
 | *.html | 임베딩 시 필요한 html. 내부의 템플릿 옵션 변경 필요 | O       |
 
-* tokenInfo.json의 경우 프로젝트 시작 후 설정 탭에서 지정 가능
 * request body의 경우 [swagger](https://app.swaggerhub.com/apis-docs/eformsign_api/eformsign_API_2.0/2.0#/) 에서 제공하는 예시 참조
+* tokenInfo.json의 경우 프로젝트 시작 후 설정 탭에서 지정 가능
+
 ----------------
 ## openAPI
 * openAPI의 기능 설명 및 위치를 안내합니다.
