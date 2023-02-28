@@ -13,7 +13,7 @@
     console.log("${error}");
     if(code.length !== 0){
         alert(code);
-        location.href="Template.html";
+        //location.href="Template.html";
     }
 </script>
 
