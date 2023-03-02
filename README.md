@@ -9,7 +9,7 @@
 ## RUN
 * 실행 파일 이름 : WebhookApplication.java (./src/main/java/com/forcs/eformsign/webhook)
 * jdk version : 11
-* tool : IntelliJ
+* tool : IntelliJ(Spring Boot)
    - eclipse 사용 시 : File - Import... - Gradle - Existing Gradle Project - Next - 프로젝트 선택 - Finish
 * Default Tomcat port : 8080 (필요시 resources내 application.properties에서 변경 가능)
 *  웹훅 Endpoint URL로 내부 ip 사용시 ngrok.exe 파일 필요
@@ -86,6 +86,6 @@
 ## 주의사항
 * jsp, logback을 사용하기 위한 몇가지 설정이 필요합니다.
 1. application.properties 내에 jsp, logback 설정이 필요합니다.
-2. resources/logback 하위에 logback-local.xml 을 통한 설정이 필요합니다.
+2. resources/logback 하위에 logback-local.xml 파일이 필요합니다.
    * property 태그 안의 경로를 변경할수 있습니다. (변경 시 해당 경로가 존재해야함)
 3. /src/main/java/com/forcs/eformsign/webhook/config/MvcConfiguration.java 에서 classpath에 대한 설정이 필요합니다.
